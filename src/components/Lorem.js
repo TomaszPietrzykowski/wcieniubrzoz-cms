@@ -1,4 +1,5 @@
 import React from "react"
+import Typography from "@material-ui/core/Typography"
 
 const Lorem = ({ vol }) => {
   const arr = []
@@ -8,11 +9,13 @@ const Lorem = ({ vol }) => {
     arr.push(p)
   }
   return (
-    <React.Fragment>
-      {arr.map((par, i) => (
-        <p key={i}>{par}</p>
-      ))}
-    </React.Fragment>
+    <Typography>
+      <React.Fragment>
+        {arr.map((par, i) => (
+          <p key={i}>{par}</p>
+        ))}
+      </React.Fragment>
+    </Typography>
   )
 }
 
