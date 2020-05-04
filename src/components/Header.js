@@ -28,15 +28,19 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
   },
   logo: {
-    height: "4rem",
+    height: "4.5rem",
     marginLeft: "1.5rem",
     marginRight: "1.5rem",
   },
   logotext: {
-    fontSize: "2.5rem",
-    fontFamily: "Roboto",
-    fontWeight: 700,
-    letterSpacing: 6,
+    ...theme.typography.logotext,
+    color: "white",
+  },
+  logoContainer: {
+    padding: 0,
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
   },
   tabContainer: {
     marginLeft: "auto",
@@ -85,8 +89,16 @@ const Header = (props) => {
       <ElevationScroll>
         <AppBar position="fixed" color="primary">
           <ToolBar disableGutters>
-            <img className={classes.logo} src={logo} alt="C M S logo" />
-            <div className={classes.logotext}>CMS</div>
+            <Button
+              onClick={resetTab}
+              component={Link}
+              to="/"
+              className={classes.logoContainer}
+              disableRipple
+            >
+              <img className={classes.logo} src={logo} alt="C M S logo" />
+              <div className={classes.logotext}>CMS</div>
+            </Button>
             <Tabs
               value={value}
               onChange={handleChange}
@@ -117,17 +129,17 @@ const Header = (props) => {
                 component={Link}
                 to="/funfacts"
               />
-              <Button
-                variant="contained"
-                color="secondary"
-                className={classes.btn}
-                component={Link}
-                to="/login"
-                onClick={resetTab}
-              >
-                Wyloguj
-              </Button>
             </Tabs>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.btn}
+              component={Link}
+              to="/login"
+              onClick={resetTab}
+            >
+              Wyloguj
+            </Button>
           </ToolBar>
         </AppBar>
       </ElevationScroll>

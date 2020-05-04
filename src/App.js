@@ -1,7 +1,9 @@
 import React from "react"
 import { ThemeProvider } from "@material-ui/core/styles"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
+import AuthContexProvider from "./context/AuthContext"
 
+import ProtectedRoute from "./components/ProtectedRoute"
 import theme from "./components/Theme"
 import Header from "./components/Header"
 import Login from "./components/pages/Login"
@@ -14,14 +16,16 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/legends" component={Legends} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/tips" component={Tips} />
-          <Route exact path="/funfacts" component={Funfacts} />
-        </Switch>
+        <AuthContexProvider>
+          <Header />
+          <Switch>
+            <ProtectedRoute exact path="/" component={Home} />
+            <ProtectedRoute exact path="/legends" component={Legends} />
+            <Route exact path="/login" component={Login} />
+            <ProtectedRoute exact path="/tips" component={Tips} />
+            <ProtectedRoute exact path="/funfacts" component={Funfacts} />
+          </Switch>
+        </AuthContexProvider>
       </BrowserRouter>
     </ThemeProvider>
   )
