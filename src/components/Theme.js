@@ -16,12 +16,7 @@ const theme = createMuiTheme({
     },
   },
   typography: {
-    logotext: {
-      fontSize: "2.5rem",
-      fontFamily: "Roboto",
-      fontWeight: 700,
-      letterSpacing: 6,
-    },
+    logotext: {},
     tab: {
       fontFamily: "Raleway",
       textTransform: "none",
