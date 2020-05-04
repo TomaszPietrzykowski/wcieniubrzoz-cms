@@ -3,7 +3,9 @@ import React from "react"
 const Funfacts = () => {
   return (
     <div>
-      <h1>Funfacts</h1>
+      <br />
+      <br />
+      <h1 style={{ textAlign: "center", color: "#777" }}>Funfacts</h1>
     </div>
   )
 }

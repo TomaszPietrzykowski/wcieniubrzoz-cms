@@ -3,7 +3,9 @@ import React from "react"
 const Login = () => {
   return (
     <div>
-      <h1>Login</h1>
+      <br />
+      <br />
+      <h1 style={{ textAlign: "center", color: "#777" }}>Login</h1>
     </div>
   )
 }

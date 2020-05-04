@@ -3,7 +3,9 @@ import React from "react"
 const Tips = () => {
   return (
     <div>
-      <h1>Tips</h1>
+      <br />
+      <br />
+      <h1 style={{ textAlign: "center", color: "#777" }}>Tips</h1>
     </div>
   )
 }

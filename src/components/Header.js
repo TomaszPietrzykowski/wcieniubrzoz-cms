@@ -26,10 +26,17 @@ function ElevationScroll(props) {
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
-    marginBottom: "1em",
   },
   logo: {
-    height: "5rem",
+    height: "4rem",
+    marginLeft: "1.5rem",
+    marginRight: "1.5rem",
+  },
+  logotext: {
+    fontSize: "2.5rem",
+    fontFamily: "Roboto",
+    fontWeight: 700,
+    letterSpacing: 6,
   },
   tabContainer: {
     marginLeft: "auto",
@@ -37,11 +44,11 @@ const useStyles = makeStyles((theme) => ({
   tab: {
     ...theme.typography.tab,
     minWidth: 10,
-    marginLeft: "25px",
+    marginLeft: "30px",
   },
   btn: {
-    ...theme.typography.estimate,
-    borderRadius: "50px",
+    ...theme.typography.logout,
+    borderRadius: "40px",
     marginLeft: "50px",
     marginRight: "25px",
   },
@@ -61,11 +68,12 @@ const Header = (props) => {
         <AppBar position="fixed" color="primary">
           <ToolBar disableGutters>
             <img className={classes.logo} src={logo} alt="C M S logo" />
+            <div className={classes.logotext}>CMS</div>
             <Tabs
               value={value}
               onChange={handleChange}
               className={classes.tabContainer}
-              indicatorColor="primary"
+              indicatorColor="secondary"
             >
               <Tab
                 className={classes.tab}
@@ -91,19 +99,15 @@ const Header = (props) => {
                 component={Link}
                 to="/funfacts"
               />
-              <Tab
-                className={classes.tab}
-                label="Wyloguj"
-                component={Link}
-                to="/login"
-              />
             </Tabs>
             <Button
               variant="contained"
               color="secondary"
               className={classes.btn}
+              component={Link}
+              to="/login"
             >
-              Free estimate
+              Wyloguj
             </Button>
           </ToolBar>
         </AppBar>

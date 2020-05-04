@@ -1,15 +1,15 @@
 import { createMuiTheme } from "@material-ui/core/styles"
 
-const green01 = "rgba(0, 110, 0, 1)"
-const contrast = "rgba(255, 153, 0, 1)"
+const blue01 = "rgba(0, 73, 188, 1)"
+const contrast = "rgba(249, 225, 40, 1)"
 
 const theme = createMuiTheme({
   palette: {
     common: {
-      green01: `${green01}`,
+      blue01: `${blue01}`,
     },
     primary: {
-      main: `${green01}`,
+      main: `${blue01}`,
     },
     secondary: {
       main: `${contrast}`,
@@ -22,9 +22,10 @@ const theme = createMuiTheme({
       fontWeight: "700",
       fontSize: "1rem",
     },
-    estimate: {
-      fontFamily: "Pacifico",
-      fontSize: "1rem",
+    logout: {
+      fontFamily: "Raleway",
+      fontWeight: "700",
+      fontSize: "0.9rem",
       textTransform: "none",
       height: "45px",
       color: "#FFFFFF",

@@ -3,7 +3,9 @@ import React from "react"
 const Legends = () => {
   return (
     <div>
-      <h1>Legends</h1>
+      <br />
+      <br />
+      <h1 style={{ textAlign: "center", color: "#777" }}>Legends</h1>
     </div>
   )
 }
