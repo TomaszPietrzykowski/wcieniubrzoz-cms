@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import AppBar from "@material-ui/core/AppBar"
 import ToolBar from "@material-ui/core/ToolBar"
 import useScrollTrigger from "@material-ui/core/useScrollTrigger"
@@ -62,6 +62,24 @@ const Header = (props) => {
     setValue(value)
   }
 
+  const resetTab = () => {
+    setValue(0)
+  }
+
+  useEffect(() => {
+    if (window.location.pathname === "/" && value !== 0) {
+      setValue(0)
+    } else if (window.location.pathname === "/legends" && value !== 1) {
+      setValue(1)
+    } else if (window.location.pathname === "/tips" && value !== 2) {
+      setValue(2)
+    } else if (window.location.pathname === "/funfacts" && value !== 3) {
+      setValue(3)
+    } else if (window.location.pathname === "/login" && value !== 0) {
+      setValue(0)
+    }
+  }, [value])
+
   return (
     <React.Fragment>
       <ElevationScroll>
@@ -99,16 +117,17 @@ const Header = (props) => {
                 component={Link}
                 to="/funfacts"
               />
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.btn}
+                component={Link}
+                to="/login"
+                onClick={resetTab}
+              >
+                Wyloguj
+              </Button>
             </Tabs>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.btn}
-              component={Link}
-              to="/login"
-            >
-              Wyloguj
-            </Button>
           </ToolBar>
         </AppBar>
       </ElevationScroll>
