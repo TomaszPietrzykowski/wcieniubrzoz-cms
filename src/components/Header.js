@@ -13,6 +13,8 @@ import { useTheme } from "@material-ui/core/styles"
 import { Link } from "react-router-dom"
 import IconButton from "@material-ui/core/IconButton"
 import List from "@material-ui/core/List"
+import ListItem from "@material-ui/core/ListItem"
+import ListItemText from "@material-ui/core/ListItemText"
 
 import logo from "../assets/logo.svg"
 
@@ -177,7 +179,23 @@ const Header = (props) => {
         onClose={() => setOpenDrawer(false)}
         onOpen={() => setOpenDrawer(true)}
       >
-        Example drawer
+        <List disablePadding>
+          <ListItem divider button component={Link} to="/">
+            <ListItemText disableTypography>Home</ListItemText>
+          </ListItem>
+          <ListItem divider button component={Link} to="/legends">
+            <ListItemText disableTypography>Legendy</ListItemText>
+          </ListItem>
+          <ListItem divider button component={Link} to="/tips">
+            <ListItemText disableTypography>Porady</ListItemText>
+          </ListItem>
+          <ListItem divider button component={Link} to="/funfacts">
+            <ListItemText disableTypography>Ciekawostki</ListItemText>
+          </ListItem>
+          <ListItem divider button component={Link} to="/login">
+            <ListItemText disableTypography>Wyloguj</ListItemText>
+          </ListItem>
+        </List>
       </SwipeableDrawer>
       <IconButton
         className={classes.iconButtonContainer}
