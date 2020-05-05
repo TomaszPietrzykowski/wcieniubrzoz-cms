@@ -1,14 +1,14 @@
 import React from "react"
 
-const Tips = () => {
+const Gallery = () => {
   return (
     <div>
       <br />
       <br />
-      <h1 style={{ textAlign: "center", color: "#777" }}>Tips</h1>
+      <h1 style={{ textAlign: "center", color: "#777" }}>Gallery</h1>
       <p style={{ minHeight: "60vh" }}></p>
     </div>
   )
 }
 
-export default Tips
+export default Gallery

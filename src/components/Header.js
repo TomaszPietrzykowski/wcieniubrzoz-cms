@@ -32,6 +32,9 @@ function ElevationScroll(props) {
 }
 
 const useStyles = makeStyles((theme) => ({
+  appbar: {
+    zIndex: theme.zIndex.modal + 1,
+  },
   toolbarMargin: {
     ...theme.mixins.toolbar,
   },
@@ -85,6 +88,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "40px",
     marginLeft: "50px",
     marginRight: "25px",
+    background: theme.palette.common.gradient3,
   },
   iconButtonContainer: {
     marginLeft: "auto",
@@ -93,8 +97,32 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   menuIcon: {
-    height: "40px",
+    height: "32px",
     width: "40px",
+    color: "white",
+  },
+  drawer: {
+    backgroundColor: theme.palette.primary.main,
+  },
+  drawerItem: {
+    ...theme.typography.tab,
+    color: "white",
+    paddingTop: "0.2rem",
+    paddingBottom: "0.2rem",
+    paddingLeft: "1.2rem",
+    paddingRight: "1.2rem",
+    opacity: 0.7,
+  },
+  drawerItemSelected: {
+    "& .MuiListItemText-root": {
+      opacity: 1,
+    },
+  },
+  drawerItemLogout: {
+    backgroundColor: theme.palette.primary.main,
+    "&:hover": {
+      backgroundColor: theme.palette.primary.dark,
+    },
   },
 }))
 
@@ -115,19 +143,27 @@ const Header = (props) => {
     setValue(0)
   }
 
+  const routes = [
+    { name: "Home", path: "/", activeIndex: 0 },
+    { name: "Legendy", path: "/legends", activeIndex: 1 },
+    { name: "Porady", path: "/tips", activeIndex: 2 },
+    { name: "Ciekawostki", path: "/funfacts", activeIndex: 3 },
+    { name: "Galeria", path: "/gallery", activeIndex: 4 },
+  ]
+
   useEffect(() => {
-    if (window.location.pathname === "/" && value !== 0) {
-      setValue(0)
-    } else if (window.location.pathname === "/legends" && value !== 1) {
-      setValue(1)
-    } else if (window.location.pathname === "/tips" && value !== 2) {
-      setValue(2)
-    } else if (window.location.pathname === "/funfacts" && value !== 3) {
-      setValue(3)
-    } else if (window.location.pathname === "/login" && value !== 0) {
-      setValue(0)
-    }
-  }, [value])
+    routes.forEach((route) => {
+      switch (window.location.pathname) {
+        case `${route.path}`:
+          if (value !== route.activeIndex) {
+            setValue(route.activeIndex)
+          }
+          break
+        default:
+          break
+      }
+    })
+  }, [value, routes])
 
   const tabs = (
     <React.Fragment>
@@ -135,27 +171,17 @@ const Header = (props) => {
         value={value}
         onChange={handleChange}
         className={classes.tabContainer}
-        indicatorColor="secondary"
+        indicatorColor="primary"
       >
-        <Tab className={classes.tab} label="Home" component={Link} to="/" />
-        <Tab
-          className={classes.tab}
-          label="Legendy"
-          component={Link}
-          to="/legends"
-        />
-        <Tab
-          className={classes.tab}
-          label="Porady"
-          component={Link}
-          to="/tips"
-        />
-        <Tab
-          className={classes.tab}
-          label="Ciekawostki"
-          component={Link}
-          to="/funfacts"
-        />
+        {routes.map((route, index) => (
+          <Tab
+            key={`${route}${index}`}
+            className={classes.tab}
+            label={route.name}
+            component={Link}
+            to={route.path}
+          />
+        ))}
       </Tabs>
       <Button
         variant="contained"
@@ -173,27 +199,49 @@ const Header = (props) => {
   const drawer = (
     <React.Fragment>
       <SwipeableDrawer
+        anchor="right"
         disableBackdropTransition={!iOS}
         disableDiscovery={iOS}
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}
         onOpen={() => setOpenDrawer(true)}
+        classes={{ paper: classes.drawer }}
       >
+        <div className={classes.toolbarMargin} />
         <List disablePadding>
-          <ListItem divider button component={Link} to="/">
-            <ListItemText disableTypography>Home</ListItemText>
-          </ListItem>
-          <ListItem divider button component={Link} to="/legends">
-            <ListItemText disableTypography>Legendy</ListItemText>
-          </ListItem>
-          <ListItem divider button component={Link} to="/tips">
-            <ListItemText disableTypography>Porady</ListItemText>
-          </ListItem>
-          <ListItem divider button component={Link} to="/funfacts">
-            <ListItemText disableTypography>Ciekawostki</ListItemText>
-          </ListItem>
-          <ListItem divider button component={Link} to="/login">
-            <ListItemText disableTypography>Wyloguj</ListItemText>
+          {routes.map((route) => (
+            <ListItem
+              key={`${route}${route.activeIndex}`}
+              onClick={() => {
+                setOpenDrawer(false)
+                setValue(route.activeIndex)
+              }}
+              divider
+              button
+              component={Link}
+              to={route.path}
+              selected={value === route.activeIndex}
+              classes={{ selected: classes.drawerItemSelected }}
+            >
+              <ListItemText className={classes.drawerItem} disableTypography>
+                {route.name}
+              </ListItemText>
+            </ListItem>
+          ))}
+          <ListItem
+            onClick={() => {
+              setOpenDrawer(false)
+              setValue(0)
+            }}
+            divider
+            button
+            component={Link}
+            to="/login"
+            classes={{ root: classes.drawerItemLogout }}
+          >
+            <ListItemText className={classes.drawerItem} disableTypography>
+              Wyloguj
+            </ListItemText>
           </ListItem>
         </List>
       </SwipeableDrawer>
@@ -210,7 +258,7 @@ const Header = (props) => {
   return (
     <React.Fragment>
       <ElevationScroll>
-        <AppBar position="fixed" color="primary">
+        <AppBar className={classes.appbar} position="fixed" color="primary">
           <ToolBar disableGutters>
             <Button
               onClick={resetTab}

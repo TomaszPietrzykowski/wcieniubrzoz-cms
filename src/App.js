@@ -11,6 +11,9 @@ import Home from "./components/pages/Home"
 import Legends from "./components/pages/Legends"
 import Tips from "./components/pages/Tips"
 import Funfacts from "./components/pages/Funfacts"
+import Gallery from "./components/pages/Gallery"
+import NotFound from "./components/pages/NotFound"
+import Footer from "./components/Footer"
 
 function App() {
   return (
@@ -21,10 +24,13 @@ function App() {
           <Switch>
             <ProtectedRoute exact path="/" component={Home} />
             <ProtectedRoute exact path="/legends" component={Legends} />
-            <Route exact path="/login" component={Login} />
             <ProtectedRoute exact path="/tips" component={Tips} />
             <ProtectedRoute exact path="/funfacts" component={Funfacts} />
+            <ProtectedRoute exact path="/Gallery" component={Gallery} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="*" component={NotFound} />
           </Switch>
+          <Footer />
         </AuthContexProvider>
       </BrowserRouter>
     </ThemeProvider>

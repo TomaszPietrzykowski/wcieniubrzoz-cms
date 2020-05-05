@@ -6,6 +6,7 @@ const Login = () => {
       <br />
       <br />
       <h1 style={{ textAlign: "center", color: "#777" }}>Login</h1>
+      <p style={{ minHeight: "60vh" }}></p>
     </div>
   )
 }
