@@ -7,12 +7,11 @@ import CardContent from "@material-ui/core/CardContent"
 import CardMedia from "@material-ui/core/CardMedia"
 import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
-
-import theme from "./Theme"
+import { Link } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    maxWidth: 360,
   },
   media: {
     height: 140,
@@ -33,12 +32,9 @@ const DashboardTab = ({ img, title, description, add, edit }) => {
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {title}
-            Legendy o kwiatach
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {description}
-            Dodaj nową legendę. Edytuj lub usuń istniejącą. Mozesz też zmienić
-            grafikę ikony wyświtlanej przy legendzie
           </Typography>
         </CardContent>
       </CardActionArea>

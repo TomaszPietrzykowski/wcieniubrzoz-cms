@@ -1,11 +1,12 @@
-import React from "react"
+import React, { useContext } from "react"
 import { ThemeProvider } from "@material-ui/core/styles"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-import AuthContexProvider from "./context/AuthContext"
 
+import { AuthContext } from "./context/AuthContext"
 import ProtectedRoute from "./components/ProtectedRoute"
 import theme from "./components/Theme"
 import Header from "./components/Header"
+import UserPanel from "./components/UserPanel"
 import Login from "./components/pages/Login"
 import Home from "./components/pages/Home"
 import Legends from "./components/pages/Legends"
@@ -16,11 +17,14 @@ import NotFound from "./components/pages/NotFound"
 import Footer from "./components/Footer"
 
 function App() {
+  const { loggedInUser } = useContext(AuthContext)
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <AuthContexProvider>
-          <Header />
+        <Header />
+        <div style={{ maxWidth: "960px", margin: "auto" }}>
+          <UserPanel user={loggedInUser} />
           <Switch>
             <ProtectedRoute exact path="/" component={Home} />
             <ProtectedRoute exact path="/legends" component={Legends} />
@@ -30,8 +34,8 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="*" component={NotFound} />
           </Switch>
-          <Footer />
-        </AuthContexProvider>
+        </div>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   )

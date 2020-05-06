@@ -1,17 +1,24 @@
 import React from "react"
 
-import UserPanel from "../UserPanel"
 import Dashboard from "../Dashboard"
+import HelpBtn from "../HelpBtn"
 
 const Home = () => {
   return (
     <div>
-      <br />
-      <br />
-      <h1 style={{ textAlign: "center", color: "#777" }}>Home</h1>
-      <UserPanel />
+      <h1
+        style={{
+          textAlign: "center",
+          color: "#777",
+          marginTop: "7rem",
+          marginBottom: "7rem",
+          fontFamily: "Raleway",
+        }}
+      >
+        Wybierz sekcję do edycji
+      </h1>
       <Dashboard />
-      <p style={{ minHeight: "60vh" }}></p>
+      <HelpBtn />
     </div>
   )
 }
