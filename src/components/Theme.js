@@ -22,6 +22,9 @@ const theme = createMuiTheme({
     secondary: {
       main: `${contrast}`,
     },
+    sectionHeader: {
+      color: "#777",
+    },
   },
   typography: {
     logotext: {},
@@ -38,6 +41,11 @@ const theme = createMuiTheme({
       textTransform: "none",
       height: "45px",
       color: "#FFFFFF",
+    },
+    sectionHeader: {
+      textAlign: "center",
+      color: "#777",
+      fontFamily: "Raleway",
     },
   },
   status: {

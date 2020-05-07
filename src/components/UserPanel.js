@@ -18,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const UserPanel = () => {
-  const user = "Dana"
+const UserPanel = ({ user }) => {
   const classes = useStyles()
+
   return (
     <div style={{ width: "100%", marginTop: "3rem" }}>
       <List className={classes.root}>
@@ -29,12 +29,12 @@ const UserPanel = () => {
             <Avatar
               style={{ height: "3.5rem", width: "3.5rem", marginRight: "1rem" }}
               alt={`${user}'s avatar`}
-              src="https://barracudadev.com/uploads/avatars/avatar1.jpg"
+              src={`https://barracudadev.com/uploads/avatars/${user.avatar}`}
             />
           </ListItemAvatar>
           <ListItemText
-            primary={`Zalogowany jako ${user}`}
-            secondary={`Witaj ${user}. Zabierzmy się do pracy...`}
+            primary={`Zalogowany jako ${user.name}`}
+            secondary={`Witaj ${user.name}. Zabierzmy się do pracy...`}
           />
         </ListItem>
         <Divider variant="inset" component="li" />

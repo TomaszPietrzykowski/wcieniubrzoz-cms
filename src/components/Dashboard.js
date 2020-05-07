@@ -10,7 +10,7 @@ const Dashboard = () => {
           width: "100%",
           display: "flex",
           justifyContent: "space-around",
-          marginTop: "5rem",
+          marginTop: "8rem",
           marginBottom: "7rem",
         }}
       >

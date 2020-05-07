@@ -1,12 +1,13 @@
 import React from "react"
 
+import SectionHeader from "../SectionHeader"
+import LoginForm from "../LoginForm"
+
 const Login = () => {
   return (
     <div>
-      <br />
-      <br />
-      <h1 style={{ textAlign: "center", color: "#777" }}>Login</h1>
-      <p style={{ minHeight: "60vh" }}></p>
+      <SectionHeader title="Zaloguj się" />
+      <LoginForm />
     </div>
   )
 }

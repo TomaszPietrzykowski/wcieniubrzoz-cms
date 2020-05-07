@@ -18,7 +18,7 @@ import Footer from "./components/Footer"
 import ScrollToTop from "./components/ScrollToTop"
 
 function App() {
-  const { loggedInUser } = useContext(AuthContext)
+  const { isLoggedIn, loggedInUser } = useContext(AuthContext)
 
   return (
     <ThemeProvider theme={theme}>
@@ -26,15 +26,19 @@ function App() {
         <ScrollToTop>
           <Header />
           <div style={{ maxWidth: "960px", margin: "auto" }}>
-            <UserPanel user={loggedInUser} />
+            {isLoggedIn && <UserPanel user={loggedInUser} />}
             <Switch>
               <ProtectedRoute exact path="/" component={Home} />
               <ProtectedRoute exact path="/legends" component={Legends} />
               <ProtectedRoute exact path="/tips" component={Tips} />
               <ProtectedRoute exact path="/funfacts" component={Funfacts} />
               <ProtectedRoute exact path="/Gallery" component={Gallery} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="*" component={NotFound} />
+              <Route
+                exact
+                path="/login"
+                component={isLoggedIn ? Home : Login}
+              />
+              <Route exact path="/*" component={NotFound} />
             </Switch>
           </div>
           <Footer />

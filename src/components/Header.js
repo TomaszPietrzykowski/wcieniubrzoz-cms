@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import AppBar from "@material-ui/core/AppBar"
 import ToolBar from "@material-ui/core/ToolBar"
 import useScrollTrigger from "@material-ui/core/useScrollTrigger"
@@ -17,6 +17,7 @@ import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
 
 import logo from "../assets/logo.svg"
+import { AuthContext } from "../context/AuthContext"
 
 function ElevationScroll(props) {
   const { children } = props
@@ -131,6 +132,7 @@ const Header = (props) => {
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.down("sm"))
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent)
+  const { logOut, isLoggedIn } = useContext(AuthContext)
 
   const [openDrawer, setOpenDrawer] = useState(false)
   const [value, setValue] = useState(0)
@@ -140,6 +142,7 @@ const Header = (props) => {
   }
 
   const resetTab = () => {
+    logOut()
     setValue(0)
   }
 
@@ -185,6 +188,7 @@ const Header = (props) => {
       </Tabs>
       <Button
         variant="contained"
+        disabled={!isLoggedIn}
         color="secondary"
         className={classes.btn}
         component={Link}
