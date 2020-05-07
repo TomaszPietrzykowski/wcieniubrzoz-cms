@@ -8,7 +8,7 @@ import { AuthContext } from "../context/AuthContext"
 const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
-      margin: theme.spacing(2),
+      margin: theme.spacing(1),
       width: "30ch",
     },
   },
@@ -17,13 +17,21 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    marginTop: "1rem",
   },
   btnContainer: {
     width: "100%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginTop: "2rem",
+  },
+  alert: {
+    width: "100%",
+    minHeight: "2rem",
+    fontSize: "0.8rem",
+    color: "#f00",
+    fontFamily: "Roboto",
+    textAlign: "center",
   },
 }))
 
@@ -32,6 +40,8 @@ const LoginForm = () => {
   const { logIn, users, setUser } = useContext(AuthContext)
   const [login, setLogin] = useState("")
   const [password, setPassword] = useState("")
+  const [loginError, setLoginError] = useState("")
+  const [passwordError, setPasswordError] = useState("")
 
   const updateLogin = (e) => {
     setLogin(e.target.value)
@@ -50,10 +60,18 @@ const LoginForm = () => {
         logIn()
       } else {
         // invalid password
+        setPasswordError("Nieprawidłowe hasło")
+        setTimeout(() => {
+          setPasswordError("")
+        }, 3000)
         return
       }
     } else {
       // no such user
+      setLoginError(`Użytkownik ${login} nie istnieje`)
+      setTimeout(() => {
+        setLoginError("")
+      }, 3000)
       return
     }
   }
@@ -76,6 +94,7 @@ const LoginForm = () => {
             onChange={updateLogin}
           />
         </div>
+        <div className={classes.alert}>{loginError}</div>
         <div>
           <TextField
             required
@@ -87,6 +106,7 @@ const LoginForm = () => {
             onChange={updatePassword}
           />
         </div>
+        <div className={classes.alert}>{passwordError}</div>
         <div className={classes.btnContainer}>
           <Button
             variant="contained"
