@@ -10,6 +10,7 @@ const useStyles = makeStyles({
     width: "100%",
     height: "140px",
     marginBottom: "0.5rem",
+    textOverflow: "ellipsis",
   },
 })
 

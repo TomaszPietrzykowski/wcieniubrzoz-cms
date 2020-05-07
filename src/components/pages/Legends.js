@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, Fragment } from "react"
 
 import SectionHeader from "../SectionHeader"
+import HelpBtn from "../HelpBtn"
 import DisplayLegendList from "../DisplayLegendList"
+import Loader from "../ui/Loader"
 
 const Legends = () => {
   const [legends, setLegends] = useState([])
@@ -27,7 +29,14 @@ const Legends = () => {
   return (
     <div>
       <SectionHeader title="Legendy o kwiatach" />
-      {loading ? <h1>loading...</h1> : <DisplayLegendList legends={legends} />}
+      {loading ? (
+        <Loader />
+      ) : (
+        <Fragment>
+          <DisplayLegendList legends={legends} />
+          <HelpBtn />
+        </Fragment>
+      )}
     </div>
   )
 }
