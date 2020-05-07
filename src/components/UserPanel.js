@@ -27,6 +27,7 @@ const UserPanel = () => {
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
             <Avatar
+              style={{ height: "3.5rem", width: "3.5rem", marginRight: "1rem" }}
               alt={`${user}'s avatar`}
               src="https://barracudadev.com/uploads/avatars/avatar1.jpg"
             />

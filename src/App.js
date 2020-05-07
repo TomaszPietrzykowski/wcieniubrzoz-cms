@@ -15,6 +15,7 @@ import Funfacts from "./components/pages/Funfacts"
 import Gallery from "./components/pages/Gallery"
 import NotFound from "./components/pages/NotFound"
 import Footer from "./components/Footer"
+import ScrollToTop from "./components/ScrollToTop"
 
 function App() {
   const { loggedInUser } = useContext(AuthContext)
@@ -22,20 +23,22 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Header />
-        <div style={{ maxWidth: "960px", margin: "auto" }}>
-          <UserPanel user={loggedInUser} />
-          <Switch>
-            <ProtectedRoute exact path="/" component={Home} />
-            <ProtectedRoute exact path="/legends" component={Legends} />
-            <ProtectedRoute exact path="/tips" component={Tips} />
-            <ProtectedRoute exact path="/funfacts" component={Funfacts} />
-            <ProtectedRoute exact path="/Gallery" component={Gallery} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="*" component={NotFound} />
-          </Switch>
-        </div>
-        <Footer />
+        <ScrollToTop>
+          <Header />
+          <div style={{ maxWidth: "960px", margin: "auto" }}>
+            <UserPanel user={loggedInUser} />
+            <Switch>
+              <ProtectedRoute exact path="/" component={Home} />
+              <ProtectedRoute exact path="/legends" component={Legends} />
+              <ProtectedRoute exact path="/tips" component={Tips} />
+              <ProtectedRoute exact path="/funfacts" component={Funfacts} />
+              <ProtectedRoute exact path="/Gallery" component={Gallery} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="*" component={NotFound} />
+            </Switch>
+          </div>
+          <Footer />
+        </ScrollToTop>
       </BrowserRouter>
     </ThemeProvider>
   )

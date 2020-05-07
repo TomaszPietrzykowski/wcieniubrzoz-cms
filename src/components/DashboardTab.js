@@ -12,9 +12,17 @@ import { Link } from "react-router-dom"
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 360,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
   },
   media: {
     height: 140,
+  },
+  cardButtons: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 }))
 
@@ -27,7 +35,7 @@ const DashboardTab = ({ img, title, description, add, edit }) => {
         <CardMedia
           className={classes.media}
           image={`https://barracudadev.com/uploads/${img}`}
-          title="Contemplative Reptile"
+          title={title}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -38,7 +46,7 @@ const DashboardTab = ({ img, title, description, add, edit }) => {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      <CardActions className={classes.cardButtons}>
         <Button size="small" color="primary" component={Link} to={`/${add}`}>
           Dodaj
         </Button>
