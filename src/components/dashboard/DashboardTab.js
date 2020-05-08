@@ -7,7 +7,7 @@ import CardContent from "@material-ui/core/CardContent"
 import CardMedia from "@material-ui/core/CardMedia"
 import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
-import { Link } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,22 +26,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const DashboardTab = ({ img, title, description, add, edit }) => {
+const DashboardTab = ({ img, title, description, add, edit, route }) => {
   const classes = useStyles()
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea>
+    <Card className={classes.root} data-keystring={route}>
+      <CardActionArea data-keystring={route}>
         <CardMedia
+          data-keystring={route}
           className={classes.media}
           image={`https://barracudadev.com/uploads/${img}`}
           title={title}
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+        <CardContent data-keystring={route}>
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="h2"
+            data-keystring={route}
+          >
             {title}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            component="p"
+            data-keystring={route}
+          >
             {description}
           </Typography>
         </CardContent>

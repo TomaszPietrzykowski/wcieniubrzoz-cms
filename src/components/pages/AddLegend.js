@@ -42,8 +42,7 @@ const AddLegend = () => {
         <h1>SUCCESS</h1>
       ) : (
         <Fragment>
-          <h1>CREATE</h1>
-          <HelpBtn />
+          <h1>...wkrótce</h1>
         </Fragment>
       )}
     </div>

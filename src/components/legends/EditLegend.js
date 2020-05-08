@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const EditLegend = ({ legend }) => {
+const EditLegend = ({ legend, setActiveTab, setEditedLegend }) => {
   const classes = useStyles()
   const [title, setTitle] = useState(legend.title)
   const [description, setDescription] = useState(legend.content.join("\n\n"))
@@ -40,7 +40,11 @@ const EditLegend = ({ legend }) => {
   return (
     <div>
       <div className={classes.text}>
-        <LegendEditBtns title={title} />
+        <LegendEditBtns
+          title={title}
+          setEditedLegend={setEditedLegend}
+          setActiveTab={setActiveTab}
+        />
       </div>
 
       <div className={classes.formContainer}>
@@ -52,7 +56,6 @@ const EditLegend = ({ legend }) => {
         >
           <div>
             <TextField
-              required
               autoFocus
               id="outlined-required"
               label="Tytuł"
@@ -65,7 +68,6 @@ const EditLegend = ({ legend }) => {
           <div>
             <TextField
               multiline
-              required
               id="outlined-password-input"
               label="Treść"
               variant="outlined"
@@ -74,24 +76,6 @@ const EditLegend = ({ legend }) => {
             />
           </div>
           <div className={classes.alert}>{console.log("content error")}</div>
-          <div className={classes.btnContainer}>
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              style={{
-                fontFamily: "Raleway",
-                fontSize: "1.4rem",
-                fontWeight: "700",
-                textTransform: "none",
-                borderRadius: "30px",
-                padding: "0.2rem 1.2rem",
-                margin: "auto",
-              }}
-            >
-              Zaloguj
-            </Button>
-          </div>
         </form>
       </div>
     </div>

@@ -37,7 +37,11 @@ const Legends = () => {
       {loading ? (
         <Loader />
       ) : activeTab === "edit" ? (
-        <EditLegend legend={editedLegend} />
+        <EditLegend
+          legend={editedLegend}
+          setEditedLegend={setEditedLegend}
+          setActiveTab={setActiveTab}
+        />
       ) : (
         <Fragment>
           <DisplayLegendList

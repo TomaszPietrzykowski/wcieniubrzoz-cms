@@ -1,4 +1,5 @@
 import React, { Fragment } from "react"
+import { Link } from "react-router-dom"
 
 import DashboardTab from "./DashboardTab"
 
@@ -15,12 +16,13 @@ const Dashboard = () => {
         }}
       >
         <DashboardTab
+          route="/legends"
           img="cleome.jpg"
           title="Legendy o kwiatach"
           description="Dodaj nową legendę. Edytuj lub usuń istniejącą. Mozesz też zmienić
             grafikę ikony wyświtlanej przy legendzie"
           add="addlegend"
-          edit="editlegend"
+          edit="legends"
         />
         <DashboardTab
           img="irys.jpg"

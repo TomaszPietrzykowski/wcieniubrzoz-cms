@@ -1,9 +1,11 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import Button from "@material-ui/core/Button"
 import { Link } from "react-router-dom"
-import { makeStyles } from "@material-ui/styles"
+import { withStyles, makeStyles } from "@material-ui/core/styles"
 import IconButton from "@material-ui/core/IconButton"
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline"
+import Tooltip from "@material-ui/core/Tooltip"
+import ClickAwayListener from "@material-ui/core/ClickAwayListener"
 
 import { NavContext } from "../../context/NavContext"
 
@@ -22,7 +24,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "flex-end",
   },
-  buttons: {},
+  buttons: {
+    display: "flex",
+    alignItems: "center",
+  },
   btn: {
     fontFamily: "Raleway",
     fontSize: "1.2rem",
@@ -35,29 +40,80 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const LegendEditBtns = ({ title }) => {
+const LegendEditBtns = ({ title, setEditedLegend, setActiveTab }) => {
   const classes = useStyles()
   const { trigger, runTrigger } = useContext(NavContext)
+  const [open, setOpen] = useState(false)
 
-  const forceTab = () => {
-    runTrigger(!trigger)
+  const goBack = () => {
+    setActiveTab("list")
+    setEditedLegend({})
   }
+
+  const handleTooltipClose = () => {
+    setOpen(false)
+  }
+
+  const handleTooltipOpen = () => {
+    setOpen(true)
+  }
+
+  const HtmlTooltip = withStyles((theme) => ({
+    tooltip: {
+      backgroundColor: "#f5f5f9",
+      color: "rgba(0, 0, 0, 0.87)",
+      maxWidth: 220,
+      fontSize: theme.typography.pxToRem(12),
+      border: "1px solid #dadde9",
+    },
+  }))(Tooltip)
 
   return (
     <div className={classes.container}>
       <div className={classes.text}>
-        <h3 style={{ marginBottom: "0.5rem" }}>{title}</h3>
+        <h2 style={{ marginBottom: "0.5rem" }}>{title}</h2>
       </div>
       <div className={classes.buttons}>
-        <IconButton color="primary" aria-label="pomoc">
-          <HelpOutlineIcon />
-        </IconButton>
+        <ClickAwayListener onClickAway={handleTooltipClose}>
+          <div>
+            <HtmlTooltip
+              placement="top-end"
+              PopperProps={{
+                disablePortal: true,
+              }}
+              onClose={handleTooltipClose}
+              open={open}
+              disableFocusListener
+              disableHoverListener
+              disableTouchListener
+              title={
+                <React.Fragment>
+                  <h3>Szybkie podpowiedzi:</h3>
+                  <strong>{"Pola puste lub nie zmienione"}</strong>
+                  <br />
+                  {" ...nie zostaną nadpisane w bazie danych."}
+                  <br />
+                  <br />
+                  <b>{"Wprowadzając treść"}</b>
+                  <br />
+                  {
+                    " ...oddziel akapity Enterem. Możesz użyć pojedynczego Entera lub kilku, nie ma to znaczenia. Podział na akapity ma wpływ na to, jak treść będzie wyświetlana na stronie."
+                  }
+                  .<br />
+                </React.Fragment>
+              }
+            >
+              <IconButton color="primary" onClick={handleTooltipOpen}>
+                <HelpOutlineIcon />
+              </IconButton>
+            </HtmlTooltip>
+          </div>
+        </ClickAwayListener>
         <Button
           variant="contained"
           color="secondary"
           className={classes.btn}
-          component={Link}
-          to="/addlegend"
+          onClick={console.log("bum")}
         >
           Dalej
         </Button>
@@ -65,9 +121,7 @@ const LegendEditBtns = ({ title }) => {
           variant="contained"
           color="primary"
           className={classes.btn}
-          component={Link}
-          to="/"
-          onClick={forceTab}
+          onClick={goBack}
         >
           Powrót
         </Button>
