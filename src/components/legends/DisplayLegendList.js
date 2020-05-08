@@ -14,10 +14,14 @@ const DisplayLegendList = ({ legends, setEditedLegend, setActiveTab }) => {
     return
   }
 
+  const arr = legends.sort((a, b) =>
+    a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+  )
+
   return (
     <Fragment>
       <LegendListBtns />
-      {legends.map((legend, i) => {
+      {arr.map((legend, i) => {
         const description = legend.content.join(" ")
         const rand = i < 10 ? i : parseInt(i / 10)
         return (
