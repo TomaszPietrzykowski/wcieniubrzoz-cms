@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Card from "@material-ui/core/Card"
 import CardActionArea from "@material-ui/core/CardActionArea"
@@ -7,7 +7,9 @@ import CardContent from "@material-ui/core/CardContent"
 import CardMedia from "@material-ui/core/CardMedia"
 import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
-import { Link, Redirect } from "react-router-dom"
+import { Link } from "react-router-dom"
+
+import { NavContext } from "../../context/NavContext"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,33 +28,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const DashboardTab = ({ img, title, description, add, edit, route }) => {
+const DashboardTab = ({ img, title, description, add, edit }) => {
   const classes = useStyles()
+  const { runTrigger } = useContext(NavContext)
 
   return (
-    <Card className={classes.root} data-keystring={route}>
-      <CardActionArea data-keystring={route}>
+    <Card className={classes.root}>
+      <CardActionArea component={Link} to={`/${edit}`} onClick={runTrigger}>
         <CardMedia
-          data-keystring={route}
           className={classes.media}
           image={`https://barracudadev.com/uploads/${img}`}
           title={title}
         />
-        <CardContent data-keystring={route}>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="h2"
-            data-keystring={route}
-          >
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
             {title}
           </Typography>
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            component="p"
-            data-keystring={route}
-          >
+          <Typography variant="body2" color="textSecondary" component="p">
             {description}
           </Typography>
         </CardContent>
