@@ -5,16 +5,17 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { AuthContext } from "./context/AuthContext"
 import ProtectedRoute from "./components/ProtectedRoute"
 import theme from "./components/Theme"
-import Header from "./components/Header"
-import UserPanel from "./components/UserPanel"
+import Header from "./components/ui/Header"
+import UserPanel from "./components/ui/UserPanel"
 import Login from "./components/pages/Login"
 import Home from "./components/pages/Home"
 import Legends from "./components/pages/Legends"
+import AddLegend from "./components/pages/AddLegend"
 import Tips from "./components/pages/Tips"
 import Funfacts from "./components/pages/Funfacts"
 import Gallery from "./components/pages/Gallery"
 import NotFound from "./components/pages/NotFound"
-import Footer from "./components/Footer"
+import Footer from "./components/ui/Footer"
 import ScrollToTop from "./components/ScrollToTop"
 
 function App() {
@@ -30,9 +31,10 @@ function App() {
             <Switch>
               <ProtectedRoute exact path="/" component={Home} />
               <ProtectedRoute exact path="/legends" component={Legends} />
+              <ProtectedRoute exact path="/addlegend" component={AddLegend} />
               <ProtectedRoute exact path="/tips" component={Tips} />
               <ProtectedRoute exact path="/funfacts" component={Funfacts} />
-              <ProtectedRoute exact path="/Gallery" component={Gallery} />
+              <ProtectedRoute exact path="/gallery" component={Gallery} />
               <Route
                 exact
                 path="/login"

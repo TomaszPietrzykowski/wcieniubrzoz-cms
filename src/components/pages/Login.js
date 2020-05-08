@@ -1,6 +1,6 @@
 import React from "react"
 
-import SectionHeader from "../SectionHeader"
+import SectionHeader from "../ui/SectionHeader"
 import LoginForm from "../LoginForm"
 
 const Login = () => {

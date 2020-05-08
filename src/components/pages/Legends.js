@@ -1,13 +1,16 @@
 import React, { useState, useEffect, Fragment } from "react"
 
-import SectionHeader from "../SectionHeader"
-import HelpBtn from "../HelpBtn"
-import DisplayLegendList from "../DisplayLegendList"
+import SectionHeader from "../ui/SectionHeader"
+import HelpBtn from "../ui/HelpBtn"
+import DisplayLegendList from "../legends/DisplayLegendList"
+import EditLegend from "../legends/EditLegend"
 import Loader from "../ui/Loader"
 
 const Legends = () => {
   const [legends, setLegends] = useState([])
   const [loading, setLoading] = useState(false)
+  const [editedLegend, setEditedLegend] = useState({})
+  const [activeTab, setActiveTab] = useState("list")
 
   useEffect(() => {
     getLegends()
@@ -28,12 +31,20 @@ const Legends = () => {
 
   return (
     <div>
-      <SectionHeader title="Legendy o kwiatach" />
+      <SectionHeader
+        title={activeTab === "edit" ? "Edytuj legendę" : "Legendy o kwiatach"}
+      />
       {loading ? (
         <Loader />
+      ) : activeTab === "edit" ? (
+        <EditLegend legend={editedLegend} />
       ) : (
         <Fragment>
-          <DisplayLegendList legends={legends} />
+          <DisplayLegendList
+            legends={legends}
+            setEditedLegend={setEditedLegend}
+            setActiveTab={setActiveTab}
+          />
           <HelpBtn />
         </Fragment>
       )}

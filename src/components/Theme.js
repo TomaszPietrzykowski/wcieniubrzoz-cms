@@ -1,7 +1,7 @@
 import { createMuiTheme } from "@material-ui/core/styles"
 
 const blue01 = "rgba(0, 73, 188, 1)"
-const contrast = "rgba(249, 225, 40, 1)"
+const contrast = "rgba(0, 204, 0, 1)"
 
 const theme = createMuiTheme({
   palette: {
@@ -23,7 +23,7 @@ const theme = createMuiTheme({
       main: `${contrast}`,
     },
     sectionHeader: {
-      color: "#777",
+      main: "#777",
     },
   },
   typography: {

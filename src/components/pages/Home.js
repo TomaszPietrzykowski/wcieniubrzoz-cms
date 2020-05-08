@@ -1,8 +1,8 @@
 import React from "react"
 
-import SectionHeader from "../SectionHeader"
-import Dashboard from "../Dashboard"
-import HelpBtn from "../HelpBtn"
+import SectionHeader from "../ui/SectionHeader"
+import Dashboard from "../dashboard/Dashboard"
+import HelpBtn from "../ui/HelpBtn"
 
 const Home = () => {
   return (

@@ -2,7 +2,7 @@ import React, { Fragment } from "react"
 import { makeStyles } from "@material-ui/styles"
 
 import errorImg from "../../assets/logoerror.svg"
-import HomeBtn from "../HomeBtn"
+import HomeBtn from "../ui/HomeBtn"
 
 const useStyles = makeStyles((theme) => ({
   errorText: {

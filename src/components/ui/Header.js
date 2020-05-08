@@ -16,8 +16,9 @@ import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
 
-import logo from "../assets/logo.svg"
-import { AuthContext } from "../context/AuthContext"
+import logo from "../../assets/logo.svg"
+import { AuthContext } from "../../context/AuthContext"
+import { NavContext } from "../../context/NavContext"
 
 function ElevationScroll(props) {
   const { children } = props
@@ -133,6 +134,7 @@ const Header = (props) => {
   const matches = useMediaQuery(theme.breakpoints.down("sm"))
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent)
   const { logOut, isLoggedIn } = useContext(AuthContext)
+  const { trigger } = useContext(NavContext)
 
   const [openDrawer, setOpenDrawer] = useState(false)
   const [value, setValue] = useState(0)
@@ -166,7 +168,7 @@ const Header = (props) => {
           break
       }
     })
-  }, [value, routes])
+  }, [value, routes, trigger])
 
   const tabs = (
     <React.Fragment>

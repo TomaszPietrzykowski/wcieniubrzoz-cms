@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
   sectionHeader: {
     ...theme.typography.sectionHeader,
     ...theme.palette.sectionHeader,
-    marginTop: "6rem",
+    marginTop: "4rem",
     marginBottom: "2rem",
   },
 }))

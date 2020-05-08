@@ -1,8 +1,11 @@
-import React from "react"
+import React, { useContext } from "react"
 import Button from "@material-ui/core/Button"
 import { Link } from "react-router-dom"
 
+import { NavContext } from "../../context/NavContext"
+
 const HomeBtn = () => {
+  const { runTrigger } = useContext(NavContext)
   return (
     <div
       style={{
@@ -27,6 +30,7 @@ const HomeBtn = () => {
         }}
         component={Link}
         to="/"
+        onClick={runTrigger}
       >
         Strona główna
       </Button>

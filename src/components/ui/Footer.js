@@ -1,6 +1,6 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
-import logo from "../assets/logo.svg"
+import logo from "../../assets/logo.svg"
 
 const useStyles = makeStyles((theme) => ({
   footer: {
