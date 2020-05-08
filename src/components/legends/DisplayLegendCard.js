@@ -4,6 +4,7 @@ import Card from "@material-ui/core/Card"
 import CardActionArea from "@material-ui/core/CardActionArea"
 import CardContent from "@material-ui/core/CardContent"
 import Typography from "@material-ui/core/Typography"
+import Avatar from "@material-ui/core/Avatar"
 
 const useStyles = makeStyles({
   root: {
@@ -11,9 +12,10 @@ const useStyles = makeStyles({
     height: "140px",
     marginBottom: "0.5rem",
   },
+  avatarContainer: {},
 })
 
-const DisplayLegendCard = ({ title, content, handleClick, id }) => {
+const DisplayLegendCard = ({ title, content, handleClick, id, rand }) => {
   const classes = useStyles()
 
   const findTarget = (e) => {
@@ -23,7 +25,22 @@ const DisplayLegendCard = ({ title, content, handleClick, id }) => {
 
   return (
     <Card className={classes.root} data-keystring={id} onClick={findTarget}>
-      <CardActionArea data-keystring={id}>
+      <CardActionArea
+        data-keystring={id}
+        style={{ display: "flex", alignItems: "flex-start" }}
+      >
+        <div className={classes.avatarContainer}>
+          <Avatar
+            style={{
+              height: "3.5rem",
+              width: "3.5rem",
+              marginLeft: "0.8rem",
+              marginTop: "0.8rem",
+            }}
+            alt={`avatar`}
+            src={`https://source.unsplash.com/240x40${rand}/?flower`}
+          />
+        </div>
         <CardContent data-keystring={id}>
           <Typography
             gutterBottom

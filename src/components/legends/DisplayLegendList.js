@@ -17,8 +17,9 @@ const DisplayLegendList = ({ legends, setEditedLegend, setActiveTab }) => {
   return (
     <Fragment>
       <LegendListBtns />
-      {legends.map((legend) => {
+      {legends.map((legend, i) => {
         const description = legend.content.join(" ")
+        const rand = i < 10 ? i : parseInt(i / 10)
         return (
           <DisplayLegendCard
             key={legend._id}
@@ -26,6 +27,7 @@ const DisplayLegendList = ({ legends, setEditedLegend, setActiveTab }) => {
             title={legend.title}
             content={description}
             handleClick={handleClick}
+            rand={rand}
           />
         )
       })}
