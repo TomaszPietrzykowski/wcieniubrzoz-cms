@@ -40,7 +40,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const LegendEditBtns = ({ title, setEditedLegend, setActiveTab }) => {
+const LegendEditBtns = ({
+  title,
+  setEditedLegend,
+  setActiveTab,
+  setConfirm,
+}) => {
   const classes = useStyles()
   const { trigger, runTrigger } = useContext(NavContext)
   const [open, setOpen] = useState(false)
@@ -48,6 +53,10 @@ const LegendEditBtns = ({ title, setEditedLegend, setActiveTab }) => {
   const goBack = () => {
     setActiveTab("list")
     setEditedLegend({})
+  }
+
+  const nextStep = () => {
+    setConfirm(true)
   }
 
   const handleTooltipClose = () => {
@@ -113,7 +122,7 @@ const LegendEditBtns = ({ title, setEditedLegend, setActiveTab }) => {
           variant="contained"
           color="secondary"
           className={classes.btn}
-          onClick={console.log("bum")}
+          onClick={nextStep}
         >
           Dalej
         </Button>

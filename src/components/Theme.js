@@ -50,6 +50,8 @@ const theme = createMuiTheme({
   },
   status: {
     danger: "orange",
+    error: "rgb(200,0,0)",
+    success: "rgb(0,200,0)",
   },
 })
 

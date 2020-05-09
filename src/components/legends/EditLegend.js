@@ -2,8 +2,11 @@ import React, { useState } from "react"
 import TextField from "@material-ui/core/TextField"
 import { makeStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
+import Avatar from "@material-ui/core/Avatar"
 
 import LegendEditBtns from "./LegendEditBtns"
+import FileUpload from "../FileUpload"
+import ConfirmEdit from "./ConfirmEdit"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +23,34 @@ const useStyles = makeStyles((theme) => ({
     color: "#777",
     marginBottom: "0.5rem",
   },
+  uploadContainer: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  avatarContainer: {
+    marginTop: "2rem",
+    marginBottom: "2rem",
+  },
+  btnContainer: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  btn: {
+    fontFamily: "Raleway",
+    fontSize: "1.2rem",
+    fontWeight: "700",
+    textTransform: "none",
+    borderRadius: "30px",
+    padding: "0.2rem 1.3rem",
+    color: "white",
+    margin: "0.8rem",
+  },
 }))
 
 const EditLegend = ({ legend, setActiveTab, setEditedLegend }) => {
@@ -28,6 +59,9 @@ const EditLegend = ({ legend, setActiveTab, setEditedLegend }) => {
   const [description, setDescription] = useState(legend.content.join("\n\n"))
   const [img, setImg] = useState(legend.image)
   const id = legend._id
+  const [confirm, setConfirm] = useState(false)
+
+  // POST REQUEST HERE
 
   const updateTitle = (e) => {
     setTitle(e.target.value)
@@ -37,13 +71,20 @@ const EditLegend = ({ legend, setActiveTab, setEditedLegend }) => {
     setDescription(e.target.value)
   }
 
-  return (
+  const goConfirm = () => {
+    setConfirm(true)
+  }
+
+  return confirm ? (
+    <ConfirmEdit setConfirm={setConfirm} />
+  ) : (
     <div>
       <div className={classes.text}>
         <LegendEditBtns
           title={title}
           setEditedLegend={setEditedLegend}
           setActiveTab={setActiveTab}
+          setConfirm={setConfirm}
         />
       </div>
 
@@ -52,7 +93,7 @@ const EditLegend = ({ legend, setActiveTab, setEditedLegend }) => {
           className={classes.root}
           noValidate
           autoComplete="off"
-          onSubmit={console.log("yo")}
+          onSubmit={() => console.log("handle submition")}
         >
           <div>
             <TextField
@@ -77,6 +118,31 @@ const EditLegend = ({ legend, setActiveTab, setEditedLegend }) => {
           </div>
           <div className={classes.alert}>{console.log("content error")}</div>
         </form>
+      </div>
+      <div className={classes.uploadContainer}>
+        <div className={classes.avatarContainer}>
+          <Avatar
+            style={{
+              height: "180px",
+              width: "180px",
+            }}
+            alt={`avatar`}
+            src={img}
+          />
+        </div>
+        <div className="fileUploadContainer">
+          <FileUpload setImg={setImg} />
+        </div>
+      </div>
+      <div className={classes.btnContainer}>
+        <Button
+          variant="contained"
+          color="secondary"
+          className={classes.btn}
+          onClick={goConfirm}
+        >
+          Dalej
+        </Button>
       </div>
     </div>
   )
