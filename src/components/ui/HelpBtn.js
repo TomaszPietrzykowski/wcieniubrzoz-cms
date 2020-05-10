@@ -2,18 +2,31 @@ import React from "react"
 import Button from "@material-ui/core/Button"
 import { Link } from "react-router-dom"
 
+import { makeStyles } from "@material-ui/styles"
+
+const useStyles = makeStyles((theme) => ({
+  btnContainer: {
+    height: "6rem",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "1rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.6rem",
+      marginBottom: "4rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.2rem",
+    },
+  },
+}))
+
 const HelpBtn = () => {
+  const classes = useStyles()
+
   return (
-    <div
-      style={{
-        height: "6rem",
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "1rem",
-      }}
-    >
+    <div className={classes.btnContainer}>
       <Button
         variant="contained"
         color="primary"

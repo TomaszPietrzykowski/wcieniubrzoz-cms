@@ -7,6 +7,13 @@ const useStyles = makeStyles((theme) => ({
     ...theme.palette.sectionHeader,
     marginTop: "4rem",
     marginBottom: "2rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.6rem",
+      marginBottom: "4rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.2rem",
+    },
   },
 }))
 

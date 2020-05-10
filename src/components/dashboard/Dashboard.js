@@ -1,19 +1,31 @@
 import React, { Fragment } from "react"
+import { makeStyles } from "@material-ui/core/styles"
 
 import DashboardTab from "./DashboardTab"
 
+const useStyles = makeStyles((theme) => ({
+  cardsContainer: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-around",
+    marginTop: "8rem",
+    marginBottom: "7rem",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      marginBottom: "0",
+      marginTop: "0",
+    },
+  },
+}))
+
 const Dashboard = () => {
+  const classes = useStyles()
+
   return (
     <Fragment>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-around",
-          marginTop: "8rem",
-          marginBottom: "7rem",
-        }}
-      >
+      <div className={classes.cardsContainer}>
         <DashboardTab
           img="cleome.jpg"
           title="Legendy o kwiatach"
@@ -30,24 +42,16 @@ const Dashboard = () => {
           edit="tips"
         />
       </div>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-around",
-          marginTop: "5rem",
-          marginBottom: "5rem",
-        }}
-      >
+      <div className={classes.cardsContainer}>
         <DashboardTab
           img="len.jpg"
           title="Ciekawostki"
-          description="Edytuj sekcję: Czy wiesz ze... Dodaj nową ciekawostke ze świata roślin, edytuj lub usuń istniejącą"
+          description="Edytuj sekcję: Czy wiesz ze... Dodaj nową ciekawostkę ze świata roślin, edytuj lub usuń istniejącą"
           add="addfunfact"
           edit="funfacts"
         />
         <DashboardTab
-          img="słonecznik.jpg"
+          img="slonecznik.jpg"
           title="Galeria"
           description="Załaduj nowe zdjecia do galerii lub usuń istniejace. Organizuj podgalerie"
           add="addtogallery"

@@ -2,6 +2,8 @@ import React, { useContext } from "react"
 import { ThemeProvider } from "@material-ui/core/styles"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 
+import { makeStyles } from "@material-ui/core/styles"
+
 import { AuthContext } from "./context/AuthContext"
 import ProtectedRoute from "./components/ProtectedRoute"
 import theme from "./components/Theme"
@@ -18,15 +20,25 @@ import NotFound from "./components/pages/NotFound"
 import Footer from "./components/ui/Footer"
 import ScrollToTop from "./components/ScrollToTop"
 
+const useStyles = makeStyles((theme) => ({
+  container: {
+    maxWidth: "960px",
+    margin: "auto",
+    [theme.breakpoints.down("sm")]: {
+      maxWidth: "90%",
+    },
+  },
+}))
+
 function App() {
   const { isLoggedIn, loggedInUser } = useContext(AuthContext)
-
+  const classes = useStyles()
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <ScrollToTop>
           <Header />
-          <div style={{ maxWidth: "960px", margin: "auto" }}>
+          <div className={classes.container}>
             {isLoggedIn && <UserPanel user={loggedInUser} />}
             <Switch>
               <ProtectedRoute exact path="/" component={Home} />

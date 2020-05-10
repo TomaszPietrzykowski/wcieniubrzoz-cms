@@ -17,14 +17,32 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: "2rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      maxWidth: 310,
+      fontSize: "0.5rem",
+    },
   },
   media: {
-    height: 140,
+    height: 130,
+    [theme.breakpoints.down("xs")]: {
+      height: 120,
+    },
   },
   cardButtons: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  tabTitle: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.3rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.1rem",
+    },
   },
 }))
 
@@ -42,7 +60,7 @@ const DashboardTab = ({ img, title, description, add, edit }) => {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {title}
+            <span className={classes.tabTitle}>{title}</span>
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {description}
