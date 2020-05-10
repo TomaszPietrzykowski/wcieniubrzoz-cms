@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   avatarContainer: {},
 })
 
-const DisplayLegendCard = ({ title, content, handleClick, id, rand }) => {
+const DisplayLegendCard = ({ title, content, handleClick, id, img }) => {
   const classes = useStyles()
 
   const findTarget = (e) => {
@@ -38,7 +38,7 @@ const DisplayLegendCard = ({ title, content, handleClick, id, rand }) => {
               marginTop: "0.8rem",
             }}
             alt={`avatar`}
-            src={`https://source.unsplash.com/240x40${rand}/?flower`}
+            src={img}
           />
         </div>
         <CardContent data-keystring={id}>

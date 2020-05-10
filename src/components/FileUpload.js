@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const FileUpload = ({ setImg, setPreview }) => {
+const FileUpload = ({ setImg }) => {
   const classes = useStyles()
   const [file, setFile] = useState("")
   const [filename, setFilename] = useState("")

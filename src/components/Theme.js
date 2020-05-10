@@ -15,12 +15,16 @@ const theme = createMuiTheme({
         "linear-gradient(149deg, rgba(0,255,55,1) 0%, rgba(0,65,255,1) 99%)",
       gradient4:
         "linear-gradient(149deg, rgba(0,255,55,1) 0%, rgba(0,159,255,1) 99%)",
+      danger: "rgba(200,0,0,1)",
     },
     primary: {
       main: `${blue01}`,
     },
     secondary: {
       main: `${contrast}`,
+    },
+    danger: {
+      main: `rgba(200,0,0,1)`,
     },
     sectionHeader: {
       main: "#777",

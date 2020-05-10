@@ -53,15 +53,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const EditLegend = ({ legend, setActiveTab, setEditedLegend }) => {
+const EditLegend = ({ legend, setActiveTab, setEditedLegend, getLegends }) => {
   const classes = useStyles()
   const [title, setTitle] = useState(legend.title)
   const [description, setDescription] = useState(legend.content.join("\n\n"))
   const [img, setImg] = useState(legend.image)
+  const [source, setSource] = useState(legend.source)
+  const [sourceUrl, setSourceUrl] = useState(legend.source_url)
   const id = legend._id
   const [confirm, setConfirm] = useState(false)
-
-  // POST REQUEST HERE
 
   const updateTitle = (e) => {
     setTitle(e.target.value)
@@ -71,17 +71,44 @@ const EditLegend = ({ legend, setActiveTab, setEditedLegend }) => {
     setDescription(e.target.value)
   }
 
+  const updateSource = (e) => {
+    setSource(e.target.value)
+  }
+
+  const updateSourceUrl = (e) => {
+    setSourceUrl(e.target.value)
+  }
+
   const goConfirm = () => {
     setConfirm(true)
+    window.scroll(0, 0)
+  }
+  const deleteLegend = () => {
+    console.log(`DELETE: ${id} - ${title}`)
+    // DELETE REQUEST HERE
   }
 
   return confirm ? (
-    <ConfirmEdit setConfirm={setConfirm} />
+    <ConfirmEdit
+      setConfirm={setConfirm}
+      setActiveTab={setActiveTab}
+      setEditedLegend={setEditedLegend}
+      legend={legend}
+      id={id}
+      title={title}
+      description={description}
+      source={source}
+      sourceUrl={sourceUrl}
+      img={img}
+      getLegends={getLegends}
+    />
   ) : (
     <div>
       <div className={classes.text}>
         <LegendEditBtns
           title={title}
+          id={id}
+          deleteLegend={deleteLegend}
           setEditedLegend={setEditedLegend}
           setActiveTab={setActiveTab}
           setConfirm={setConfirm}
@@ -100,7 +127,7 @@ const EditLegend = ({ legend, setActiveTab, setEditedLegend }) => {
               autoFocus
               id="outlined-required"
               label="Tytuł"
-              defaultValue={legend.title}
+              defaultValue={title}
               variant="outlined"
               onChange={updateTitle}
             />
@@ -117,6 +144,24 @@ const EditLegend = ({ legend, setActiveTab, setEditedLegend }) => {
             />
           </div>
           <div className={classes.alert}>{console.log("content error")}</div>
+          <div>
+            <TextField
+              id="outlined-required"
+              label="Źródło"
+              defaultValue={source || "źródło nieznane"}
+              variant="outlined"
+              onChange={updateSource}
+            />
+          </div>
+          <div>
+            <TextField
+              id="outlined-required"
+              label="Link do żródła"
+              defaultValue={sourceUrl || "brak"}
+              variant="outlined"
+              onChange={updateSourceUrl}
+            />
+          </div>
         </form>
       </div>
       <div className={classes.uploadContainer}>

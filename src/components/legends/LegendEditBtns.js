@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
   },
+
   btn: {
     fontFamily: "Raleway",
     fontSize: "1.2rem",
@@ -38,6 +39,20 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     margin: "0.8rem",
   },
+  btnDel: {
+    fontFamily: "Raleway",
+    fontSize: "1.2rem",
+    fontWeight: "700",
+    textTransform: "none",
+    borderRadius: "30px",
+    padding: "0.2rem 1.3rem",
+    color: "white",
+    margin: "0.8rem",
+    background: "rgb(200,0,0)",
+    "&:hover": {
+      background: "rgb(160,0,0)",
+    },
+  },
 }))
 
 const LegendEditBtns = ({
@@ -45,12 +60,20 @@ const LegendEditBtns = ({
   setEditedLegend,
   setActiveTab,
   setConfirm,
+  deleteLegend,
 }) => {
   const classes = useStyles()
   const { trigger, runTrigger } = useContext(NavContext)
   const [open, setOpen] = useState(false)
 
   const goBack = () => {
+    setActiveTab("list")
+    setEditedLegend({})
+  }
+
+  const handleDelete = () => {
+    // CONFIRMATION MODAL
+    deleteLegend()
     setActiveTab("list")
     setEditedLegend({})
   }
@@ -125,6 +148,14 @@ const LegendEditBtns = ({
           onClick={nextStep}
         >
           Dalej
+        </Button>
+        <Button
+          variant="contained"
+          // color="transparent"
+          className={classes.btnDel}
+          onClick={handleDelete}
+        >
+          Usuń
         </Button>
         <Button
           variant="contained"
