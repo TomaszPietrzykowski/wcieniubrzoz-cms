@@ -17,12 +17,14 @@ const Legends = () => {
   }, [])
 
   const getLegends = async () => {
+    window.scroll(0, 0)
     setLoading(true)
     try {
       const res = await fetch("https://barracudadev.com/api/v1/legends")
       const data = await res.json()
       const downloaded = data.data
       setLegends(downloaded)
+
       setLoading(false)
     } catch (err) {
       console.log(err)

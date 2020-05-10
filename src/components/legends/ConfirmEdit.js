@@ -125,19 +125,19 @@ const ConfirmEdit = ({
       <div className={classes.container}>
         <Button
           variant="contained"
-          color="secondary"
-          className={classes.btn}
-          onClick={executePatch}
-        >
-          Wyślij
-        </Button>
-        <Button
-          variant="contained"
           color="primary"
           className={classes.btn}
           onClick={goBack}
         >
           Powrót
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          className={classes.btn}
+          onClick={executePatch}
+        >
+          Wyślij
         </Button>
       </div>
     </div>
