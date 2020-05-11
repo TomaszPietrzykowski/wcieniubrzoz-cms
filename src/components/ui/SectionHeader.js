@@ -9,10 +9,10 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "2rem",
     [theme.breakpoints.down("sm")]: {
       fontSize: "1.6rem",
-      marginBottom: "4rem",
+      marginBottom: "0",
     },
     [theme.breakpoints.down("xs")]: {
-      fontSize: "1.2rem",
+      fontSize: "1.4rem",
     },
   },
 }))

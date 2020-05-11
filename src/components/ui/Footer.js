@@ -14,10 +14,17 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
   },
   footerLogo: {
-    height: "7rem",
+    height: "10rem",
     position: "relative",
     bottom: "0",
     left: "3rem",
+    [theme.breakpoints.down("sm")]: {
+      height: "8rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      height: "7rem",
+      left: "2rem",
+    },
   },
   devLogo: {
     ...theme.typography.tab,
@@ -37,11 +44,11 @@ const Footer = () => {
   return (
     <React.Fragment>
       <footer className={classes.footer}>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 1 800 200">
           <path
             fill="#ffffff"
             fill-opacity="1"
-            d="M0,192L40,176C80,160,160,128,240,117.3C320,107,400,117,480,133.3C560,149,640,171,720,186.7C800,203,880,213,960,186.7C1040,160,1120,96,1200,85.3C1280,75,1360,117,1400,138.7L1440,160L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"
+            d="M 0 0 L 0 150 Q 138 52 375 142 Q 630 237 800 150 L 800 0 Z"
           ></path>
         </svg>
         <div className={classes.footerContainer}>

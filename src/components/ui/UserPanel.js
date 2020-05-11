@@ -13,8 +13,36 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "36ch",
     backgroundColor: theme.palette.background.paper,
   },
-  inline: {
-    display: "inline",
+  userPanelContainer: {
+    width: "100%",
+    marginTop: "3rem",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "2rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "1rem",
+    },
+  },
+  listItemAvatar: {
+    height: "3.5rem",
+    width: "3.5rem",
+    marginRight: "1rem",
+    [theme.breakpoints.down("sm")]: {
+      height: "3.2rem",
+      width: "3.2rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      height: "2.8rem",
+      width: "2.8rem",
+    },
+  },
+  textPrimary: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.9rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.8rem",
+    },
   },
 }))
 
@@ -22,19 +50,27 @@ const UserPanel = ({ user }) => {
   const classes = useStyles()
 
   return (
-    <div style={{ width: "100%", marginTop: "3rem" }}>
+    <div className={classes.userPanelContainer}>
       <List className={classes.root}>
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
             <Avatar
-              style={{ height: "3.5rem", width: "3.5rem", marginRight: "1rem" }}
+              className={classes.listItemAvatar}
               alt={`${user}'s avatar`}
               src={`https://barracudadev.com/uploads/avatars/${user.avatar}`}
             />
           </ListItemAvatar>
           <ListItemText
-            primary={`Zalogowany jako ${user.name}`}
-            secondary={`Witaj ${user.name}. Zabierzmy się do pracy...`}
+            primary={
+              <span
+                className={classes.textPrimary}
+              >{`Zalogowany jako ${user.name}`}</span>
+            }
+            secondary={
+              <span
+                className={classes.textPrimary}
+              >{`Witaj ${user.name}. Zabierzmy się do pracy...`}</span>
+            }
           />
         </ListItem>
         <Divider variant="inset" component="li" />

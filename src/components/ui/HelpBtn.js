@@ -11,13 +11,19 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "1rem",
+  },
+  btn: {
+    fontFamily: "Raleway",
+    fontSize: "1.4rem",
+    fontWeight: "700",
+    textTransform: "none",
+    borderRadius: "30px",
+    padding: "0.3rem 1.5rem",
     [theme.breakpoints.down("sm")]: {
-      fontSize: "1.6rem",
-      marginBottom: "4rem",
+      fontSize: "1.2rem",
     },
     [theme.breakpoints.down("xs")]: {
-      fontSize: "1.2rem",
+      fontSize: "1rem",
     },
   },
 }))
@@ -30,14 +36,7 @@ const HelpBtn = () => {
       <Button
         variant="contained"
         color="primary"
-        style={{
-          fontFamily: "Raleway",
-          fontSize: "1.4rem",
-          fontWeight: "700",
-          textTransform: "none",
-          borderRadius: "30px",
-          padding: "0.3rem 1.5rem",
-        }}
+        className={classes.btn}
         component={Link}
         to="/help"
       >

@@ -1,64 +1,88 @@
 import React, { Fragment } from "react"
 import { makeStyles } from "@material-ui/core/styles"
+import Grid from "@material-ui/core/Grid"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
+import { useTheme } from "@material-ui/core/styles"
 
 import DashboardTab from "./DashboardTab"
 
 const useStyles = makeStyles((theme) => ({
   cardsContainer: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "space-around",
-    marginTop: "8rem",
-    marginBottom: "7rem",
+    height: "100%",
+    paddingBottom: "2rem",
+  },
+  // [theme.breakpoints.down("sm")]: {
+
+  // },
+  gridContainer: {
+    marginTop: "6rem",
     [theme.breakpoints.down("sm")]: {
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      marginBottom: "0",
-      marginTop: "0",
+      marginTop: "4rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "3rem",
     },
   },
 }))
 
 const Dashboard = () => {
   const classes = useStyles()
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up("sm"))
 
   return (
-    <Fragment>
-      <div className={classes.cardsContainer}>
-        <DashboardTab
-          img="cleome.jpg"
-          title="Legendy o kwiatach"
-          description="Dodaj nową legendę. Edytuj lub usuń istniejącą. Mozesz też zmienić
+    <Grid
+      container
+      justify="center"
+      spacing={matches ? 8 : 2}
+      className={classes.gridContainer}
+    >
+      <Grid item md={6} sm={12}>
+        <Grid container justify="center" className={classes.cardsContainer}>
+          <DashboardTab
+            img="cleome.jpg"
+            title="Legendy o kwiatach"
+            description="Dodaj nową legendę. Edytuj lub usuń istniejącą. Mozesz też zmienić
             grafikę ikony wyświtlanej przy legendzie"
-          add="addlegend"
-          edit="legends"
-        />
-        <DashboardTab
-          img="irys.jpg"
-          title="Porady"
-          description="Edytuj sekcję: Porady Ogrodnika. Dodaj nową poradę, edytuj lub usuń istniejącą"
-          add="addtip"
-          edit="tips"
-        />
-      </div>
-      <div className={classes.cardsContainer}>
-        <DashboardTab
-          img="len.jpg"
-          title="Ciekawostki"
-          description="Edytuj sekcję: Czy wiesz ze... Dodaj nową ciekawostkę ze świata roślin, edytuj lub usuń istniejącą"
-          add="addfunfact"
-          edit="funfacts"
-        />
-        <DashboardTab
-          img="slonecznik.jpg"
-          title="Galeria"
-          description="Załaduj nowe zdjecia do galerii lub usuń istniejace. Organizuj podgalerie"
-          add="addtogallery"
-          edit="gallery"
-        />
-      </div>
-    </Fragment>
+            add="addlegend"
+            edit="legends"
+          />
+        </Grid>
+      </Grid>
+      <Grid item md={6} sm={12}>
+        <Grid container justify="center" className={classes.cardsContainer}>
+          <DashboardTab
+            img="irys.jpg"
+            title="Porady"
+            description="Edytuj sekcję: Porady Ogrodnika. Dodaj nową poradę, edytuj lub usuń istniejącą"
+            add="addtip"
+            edit="tips"
+          />
+        </Grid>
+      </Grid>
+      <Grid item md={6} sm={12}>
+        <Grid container justify="center" className={classes.cardsContainer}>
+          <DashboardTab
+            img="len.jpg"
+            title="Ciekawostki"
+            description="Edytuj sekcję: Czy wiesz ze... Dodaj nową ciekawostkę ze świata roślin, edytuj lub usuń istniejącą"
+            add="addfunfact"
+            edit="funfacts"
+          />
+        </Grid>
+      </Grid>
+      <Grid item md={6} sm={12}>
+        <Grid container justify="center" className={classes.cardsContainer}>
+          <DashboardTab
+            img="slonecznik.jpg"
+            title="Galeria"
+            description="Załaduj nowe zdjecia do galerii lub usuń istniejace. Organizuj podgalerie"
+            add="addtogallery"
+            edit="gallery"
+          />
+        </Grid>
+      </Grid>
+    </Grid>
   )
 }
 
