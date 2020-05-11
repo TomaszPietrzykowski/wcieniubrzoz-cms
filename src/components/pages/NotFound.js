@@ -5,24 +5,39 @@ import errorImg from "../../assets/logoerror.svg"
 import HomeBtn from "../ui/HomeBtn"
 
 const useStyles = makeStyles((theme) => ({
-  errorText: {
-    ...theme.typography.tab,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-around",
-    alignItems: "center",
-    color: "#F00",
-    fontSize: "2rem",
-  },
   errorContainer: {
+    // minHeight: "30vh",
     width: "100%",
     display: "flex",
     justifyContent: "center",
     marginTop: "4rem",
   },
   errorImg: {
-    height: "12rem",
+    height: "10rem",
     marginRight: "4rem",
+    [theme.breakpoints.down("sm")]: {
+      height: "8rem",
+      marginRight: "2rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      height: "7rem",
+      marginRight: "1.5rem",
+    },
+  },
+  errorText: {
+    ...theme.typography.tab,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
+    alignItems: "flex-start",
+    color: "#F00",
+    fontSize: "2rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.6rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.2rem",
+    },
   },
 }))
 const NotFound = () => {
@@ -40,6 +55,9 @@ const NotFound = () => {
           <h1 className={classes.errorText}>404: Strona nie istnieje</h1>
         </div>
       </div>
+      <br />
+      <br />
+      <br />
       <br />
       <HomeBtn />
     </Fragment>

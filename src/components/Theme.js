@@ -57,6 +57,21 @@ const theme = createMuiTheme({
     error: "rgb(200,0,0)",
     success: "rgb(0,200,0)",
   },
+  btnContainer: {
+    height: "6rem",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  btn: {
+    fontFamily: "Raleway",
+    fontSize: "1.4rem",
+    fontWeight: "700",
+    textTransform: "none",
+    borderRadius: "30px",
+    padding: "0.3rem 1.5rem",
+  },
 })
 
 export default theme

@@ -6,19 +6,10 @@ import { makeStyles } from "@material-ui/styles"
 
 const useStyles = makeStyles((theme) => ({
   btnContainer: {
-    height: "6rem",
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    ...theme.btnContainer,
   },
   btn: {
-    fontFamily: "Raleway",
-    fontSize: "1.4rem",
-    fontWeight: "700",
-    textTransform: "none",
-    borderRadius: "30px",
-    padding: "0.3rem 1.5rem",
+    ...theme.btn,
     [theme.breakpoints.down("sm")]: {
       fontSize: "1.2rem",
     },

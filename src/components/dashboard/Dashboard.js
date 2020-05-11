@@ -11,9 +11,6 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     paddingBottom: "2rem",
   },
-  // [theme.breakpoints.down("sm")]: {
-
-  // },
   gridContainer: {
     marginTop: "6rem",
     [theme.breakpoints.down("sm")]: {

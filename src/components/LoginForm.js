@@ -20,18 +20,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "1rem",
   },
   btnContainer: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    ...theme.btnContainer,
   },
   btn: {
-    fontFamily: "Raleway",
-    fontSize: "1.4rem",
-    fontWeight: "700",
-    textTransform: "none",
-    borderRadius: "30px",
-    padding: "0.3rem 1.5rem",
+    ...theme.btn,
     [theme.breakpoints.down("sm")]: {
       fontSize: "1.2rem",
     },
@@ -73,7 +65,6 @@ const LoginForm = () => {
         setUser(userCheck)
         logIn()
       } else {
-        // invalid password
         setPasswordError("Nieprawidłowe hasło")
         setTimeout(() => {
           setPasswordError("")
@@ -81,7 +72,6 @@ const LoginForm = () => {
         return
       }
     } else {
-      // no such user
       setLoginError(`Użytkownik ${login} nie istnieje`)
       setTimeout(() => {
         setLoginError("")
