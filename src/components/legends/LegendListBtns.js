@@ -13,23 +13,45 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "flex-end",
     padding: "1rem",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+      alignItems: "center",
+      height: "8rem",
+      marginBottom: "2rem",
+    },
   },
   text: {
     ...theme.typography.tab,
     color: "#777",
     display: "flex",
     alignItems: "flex-end",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.9rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.7rem",
+      fontWeight: "500",
+    },
   },
-  buttons: {},
+  buttons: {
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      display: "flex",
+      justifyContent: "space-around",
+      alignItems: "center",
+    },
+  },
   btn: {
-    fontFamily: "Raleway",
-    fontSize: "1.2rem",
-    fontWeight: "700",
-    textTransform: "none",
-    borderRadius: "30px",
-    padding: "0.2rem 1.3rem",
-    color: "white",
+    ...theme.btn,
+    ...theme.btnSmall,
     marginRight: "2rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.2rem",
+      margin: "0.3rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+    },
   },
 }))
 

@@ -35,21 +35,11 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "2rem",
   },
   btnContainer: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    ...theme.btnContainer,
   },
   btn: {
-    fontFamily: "Raleway",
-    fontSize: "1.2rem",
-    fontWeight: "700",
-    textTransform: "none",
-    borderRadius: "30px",
-    padding: "0.2rem 1.3rem",
-    color: "white",
-    margin: "0.8rem",
+    ...theme.btn,
+    ...theme.btnSmall,
   },
 }))
 

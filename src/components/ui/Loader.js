@@ -17,7 +17,7 @@ const Loader = () => {
         src={spinner}
         alt="loader"
         style={{
-          height: "200px",
+          height: "120px",
           margin: "2rem",
         }}
       />

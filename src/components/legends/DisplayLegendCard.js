@@ -6,14 +6,45 @@ import CardContent from "@material-ui/core/CardContent"
 import Typography from "@material-ui/core/Typography"
 import Avatar from "@material-ui/core/Avatar"
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     height: "140px",
     marginBottom: "0.5rem",
   },
-  avatarContainer: {},
-})
+  // avatarContainer: {},
+  avatar: {
+    height: "3.5rem",
+    width: "3.5rem",
+    marginLeft: "0.8rem",
+    marginTop: "0.8rem",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "1rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      height: "2.5rem",
+      width: "2.5rem",
+      marginLeft: "0.3rem",
+      marginTop: "1.1rem",
+    },
+  },
+  h2: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.2rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+    },
+  },
+  p: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.8rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.75rem",
+    },
+  },
+}))
 
 const DisplayLegendCard = ({ title, content, handleClick, id, img }) => {
   const classes = useStyles()
@@ -29,17 +60,8 @@ const DisplayLegendCard = ({ title, content, handleClick, id, img }) => {
         data-keystring={id}
         style={{ display: "flex", alignItems: "flex-start" }}
       >
-        <div className={classes.avatarContainer}>
-          <Avatar
-            style={{
-              height: "3.5rem",
-              width: "3.5rem",
-              marginLeft: "0.8rem",
-              marginTop: "0.8rem",
-            }}
-            alt={`avatar`}
-            src={img}
-          />
+        <div>
+          <Avatar className={classes.avatar} alt={`avatar`} src={img} />
         </div>
         <CardContent data-keystring={id}>
           <Typography
@@ -48,7 +70,9 @@ const DisplayLegendCard = ({ title, content, handleClick, id, img }) => {
             component="h2"
             data-keystring={id}
           >
-            {title}
+            <span data-keystring={id} className={classes.h2}>
+              {title}
+            </span>
           </Typography>
           <Typography
             variant="body2"
@@ -56,7 +80,9 @@ const DisplayLegendCard = ({ title, content, handleClick, id, img }) => {
             component="p"
             data-keystring={id}
           >
-            {content}
+            <span data-keystring={id} className={classes.p}>
+              {content}
+            </span>
           </Typography>
         </CardContent>
       </CardActionArea>

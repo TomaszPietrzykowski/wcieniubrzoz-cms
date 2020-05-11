@@ -72,6 +72,12 @@ const theme = createMuiTheme({
     borderRadius: "30px",
     padding: "0.3rem 1.5rem",
   },
+  btnSmall: {
+    fontSize: "1.2rem",
+    padding: "0.2rem 1.3rem",
+    color: "white",
+    margin: "0.8rem",
+  },
 })
 
 export default theme

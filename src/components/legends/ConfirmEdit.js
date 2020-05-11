@@ -6,21 +6,20 @@ import axios from "axios"
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    height: "6rem",
-    width: "100%",
-    display: "flex",
+    ...theme.btnContainer,
     justifyContent: "space-around",
-    alignItems: "center",
   },
   btn: {
-    fontFamily: "Raleway",
-    fontSize: "1.2rem",
-    fontWeight: "700",
-    textTransform: "none",
-    borderRadius: "30px",
-    padding: "0.2rem 1.3rem",
-    color: "white",
-    margin: "0.8rem",
+    ...theme.btn,
+    ...theme.btnSmall,
+    marginRight: "2rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.2rem",
+      margin: "0.3rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+    },
   },
   subtitle: {
     fontFamily: "Raleway",
@@ -28,10 +27,19 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "700",
     color: "#777",
     marginBottom: "2.5rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.2rem",
+      marginTop: "2rem",
+      textAlign: "center",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+    },
   },
   preview: {
     color: "#777",
     fontFamily: "Roboto",
+    textAlign: "justify",
   },
   avatar: {
     display: "flex",

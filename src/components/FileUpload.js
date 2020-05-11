@@ -16,14 +16,14 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
   },
   btn: {
-    fontFamily: "Raleway",
-    fontSize: "1.2rem",
-    fontWeight: "700",
-    textTransform: "none",
-    borderRadius: "30px",
-    padding: "0.2rem 1.3rem",
-    color: "white",
-    margin: "0.8rem",
+    ...theme.btn,
+    ...theme.btnSmall,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.2rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+    },
   },
 }))
 
