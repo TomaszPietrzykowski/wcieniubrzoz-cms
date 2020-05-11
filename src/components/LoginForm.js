@@ -22,8 +22,22 @@ const useStyles = makeStyles((theme) => ({
   btnContainer: {
     width: "100%",
     display: "flex",
-    flexDirection: "column",
+    justifyContent: "center",
     alignItems: "center",
+  },
+  btn: {
+    fontFamily: "Raleway",
+    fontSize: "1.4rem",
+    fontWeight: "700",
+    textTransform: "none",
+    borderRadius: "30px",
+    padding: "0.3rem 1.5rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.2rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+    },
   },
   alert: {
     width: "100%",
@@ -112,15 +126,7 @@ const LoginForm = () => {
             variant="contained"
             color="primary"
             type="submit"
-            style={{
-              fontFamily: "Raleway",
-              fontSize: "1.4rem",
-              fontWeight: "700",
-              textTransform: "none",
-              borderRadius: "30px",
-              padding: "0.2rem 1.2rem",
-              margin: "auto",
-            }}
+            className={classes.btn}
           >
             Zaloguj
           </Button>
