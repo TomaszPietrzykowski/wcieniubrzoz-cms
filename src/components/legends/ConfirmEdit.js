@@ -40,6 +40,12 @@ const useStyles = makeStyles((theme) => ({
     color: "#777",
     fontFamily: "Roboto",
     textAlign: "justify",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.9rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.8rem",
+    },
   },
   avatar: {
     display: "flex",

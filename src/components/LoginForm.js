@@ -24,11 +24,8 @@ const useStyles = makeStyles((theme) => ({
   },
   btn: {
     ...theme.btn,
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "1.2rem",
-    },
     [theme.breakpoints.down("xs")]: {
-      fontSize: "1rem",
+      fontSize: "1.2rem",
     },
   },
   alert: {
