@@ -52,12 +52,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const ConfirmEdit = ({
+const ConfirmAdd = ({
   setConfirm,
-  setActiveTab,
-  setEditedLegend,
-  legend,
-  id,
   title,
   description,
   source,
@@ -66,32 +62,36 @@ const ConfirmEdit = ({
   getLegends,
 }) => {
   const classes = useStyles()
-  const parsed = description.split("\n").filter((string) => string !== "")
-  const newContent = parsed.length > 0 ? parsed : legend.content
-  const newTitle = title || legend.title
-  const newSource = source || legend.source || "brak"
-  const newSourceUrl = sourceUrl || legend.source_url || "brak"
+  const newContent = description.split("\n").filter((string) => string !== "")
+  const newTitle = title
+  const newSource = source
+  const newSourceUrl = sourceUrl
 
-  const updated = {
-    title: newTitle,
-    content: newContent,
-    image: img,
-    source: newSource,
-    source_url: newSourceUrl,
-  }
-  const executePatch = async () => {
+  const executePost = async () => {
+    const updated = {
+      title: newTitle,
+      content: newContent,
+      image: img,
+      source: newSource,
+      source_url: newSourceUrl,
+    }
+
     try {
-      const response = await axios.patch(
-        `https://barracudadev.com/api/v1/legends/${id}`,
+      const response = await axios.post(
+        `https://barracudadev.com/api/v1/legends`,
         updated
       )
-      window.alert("Sukces: legenda zaktualizowana :)")
+      console.log(response)
+      window.alert("Sukces: legenda dodana :)")
     } catch (e) {
-      window.alert(`😱 Axios request failed: ${e}`)
+      window.alert(`Błąd 😱 Tytuł i treść są wymagane`)
     }
-    getLegends()
-    setActiveTab("list")
-    setEditedLegend({})
+    // Show confirmation
+    // .............timeout
+    // getLegends()
+    // setActiveTab("list")
+    // setEditedLegend({})
+    // ___________________________________________________________________________________
   }
   const goBack = () => {
     setConfirm(false)
@@ -99,7 +99,7 @@ const ConfirmEdit = ({
 
   return (
     <div>
-      <div className={classes.subtitle}>Potwierdź zmiany:</div>
+      <div className={classes.subtitle}>Nowa legenda::</div>
       <div className={classes.preview}>
         <h3 style={{ color: "#555" }}>{title}</h3>
         <div className={classes.content}>
@@ -141,7 +141,7 @@ const ConfirmEdit = ({
           variant="contained"
           color="secondary"
           className={classes.btn}
-          onClick={executePatch}
+          onClick={executePost}
         >
           Wyślij
         </Button>
@@ -150,4 +150,4 @@ const ConfirmEdit = ({
   )
 }
 
-export default ConfirmEdit
+export default ConfirmAdd

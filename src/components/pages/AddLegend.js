@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from "react"
 
 import SectionHeader from "../ui/SectionHeader"
+import AddLegendForm from "../legends/AddLegendForm"
 import HelpBtn from "../ui/HelpBtn"
 import Loader from "../ui/Loader"
 
@@ -42,7 +43,7 @@ const AddLegend = () => {
         <h1>SUCCESS</h1>
       ) : (
         <Fragment>
-          <h1>...wkrótce</h1>
+          <AddLegendForm />
         </Fragment>
       )}
     </div>
