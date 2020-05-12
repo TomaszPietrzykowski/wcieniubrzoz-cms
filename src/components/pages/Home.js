@@ -1,5 +1,6 @@
 import React from "react"
 
+import { NavContext } from "../../context/NavContext"
 import SectionHeader from "../ui/SectionHeader"
 import Dashboard from "../dashboard/Dashboard"
 import HelpBtn from "../ui/HelpBtn"

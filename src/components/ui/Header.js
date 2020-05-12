@@ -155,9 +155,17 @@ const Header = (props) => {
     { name: "Ciekawostki", path: "/funfacts", activeIndex: 3 },
     { name: "Galeria", path: "/gallery", activeIndex: 4 },
   ]
+  const routes1 = [
+    { name: "Home", path: "/", activeIndex: 0 },
+    { name: "Legendy", path: "/legends", activeIndex: 1 },
+    { name: "Porady", path: "/tips", activeIndex: 2 },
+    { name: "Ciekawostki", path: "/funfacts", activeIndex: 3 },
+    { name: "Galeria", path: "/gallery", activeIndex: 4 },
+    { name: "Login", path: "/login", activeIndex: 0 },
+  ]
 
   useEffect(() => {
-    routes.forEach((route) => {
+    routes1.forEach((route) => {
       switch (window.location.pathname) {
         case `${route.path}`:
           if (value !== route.activeIndex) {
