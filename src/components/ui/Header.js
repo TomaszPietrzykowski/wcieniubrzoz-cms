@@ -237,6 +237,7 @@ const Header = (props) => {
           <ListItem
             onClick={() => {
               setOpenDrawer(false)
+              logOut()
               setValue(0)
             }}
             divider
