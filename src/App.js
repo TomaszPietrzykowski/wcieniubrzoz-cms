@@ -22,7 +22,7 @@ import ScrollToTop from "./components/ScrollToTop"
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    maxWidth: "960px",
+    maxWidth: "920px",
     margin: "auto",
     [theme.breakpoints.down("sm")]: {
       maxWidth: "90%",

@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
       alignItems: "center",
       height: "8rem",
       marginBottom: "2rem",
+      padding: "0",
     },
   },
   text: {
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "2rem",
     [theme.breakpoints.down("sm")]: {
       fontSize: "1.2rem",
-      margin: "0.3rem",
+      margin: "0",
     },
     [theme.breakpoints.down("xs")]: {
       fontSize: "1rem",

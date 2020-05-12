@@ -13,15 +13,15 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiTextField-root": {
       margin: theme.spacing(2),
       width: "100%",
-      "&:hover": {
-        color: "#f00",
-      },
     },
   },
   text: {
     ...theme.typography.tab,
     color: "#777",
     marginBottom: "0.5rem",
+  },
+  inputText: {
+    fontSize: "3rem",
   },
   uploadContainer: {
     width: "100%",
@@ -114,6 +114,7 @@ const EditLegend = ({ legend, setActiveTab, setEditedLegend, getLegends }) => {
         >
           <div>
             <TextField
+              style={{ margin: "auto", marginBottom: "30px" }}
               autoFocus
               id="outlined-required"
               label="Tytuł"
@@ -125,6 +126,7 @@ const EditLegend = ({ legend, setActiveTab, setEditedLegend, getLegends }) => {
           <div className={classes.alert}>{console.log("title error")}</div>
           <div>
             <TextField
+              style={{ margin: "auto", marginBottom: "30px" }}
               multiline
               id="outlined-password-input"
               label="Treść"
@@ -136,6 +138,7 @@ const EditLegend = ({ legend, setActiveTab, setEditedLegend, getLegends }) => {
           <div className={classes.alert}>{console.log("content error")}</div>
           <div>
             <TextField
+              style={{ margin: "auto", marginBottom: "30px" }}
               id="outlined-required"
               label="Źródło"
               defaultValue={source || "źródło nieznane"}
@@ -145,6 +148,7 @@ const EditLegend = ({ legend, setActiveTab, setEditedLegend, getLegends }) => {
           </div>
           <div>
             <TextField
+              style={{ margin: "auto" }}
               id="outlined-required"
               label="Link do żródła"
               defaultValue={sourceUrl || "brak"}
