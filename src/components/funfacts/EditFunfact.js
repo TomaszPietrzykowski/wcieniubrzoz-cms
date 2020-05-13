@@ -5,9 +5,9 @@ import { makeStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 import Avatar from "@material-ui/core/Avatar"
 
-import LegendEditBtns from "./LegendEditBtns"
+import FunfactEditBtns from "./FunfactEditBtns"
 import FileUpload from "../FileUpload"
-import ConfirmEdit from "./ConfirmEdit"
+import ConfirmFunfactEdit from "./ConfirmFunfactEdit"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,20 +44,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const EditLegend = ({
-  legend,
+const EditFunfact = ({
+  funfact,
   setActiveTab,
-  setEditedLegend,
-  getLegends,
+  setEditedFunfact,
+  getFunfacts,
   setLoading,
 }) => {
   const classes = useStyles()
-  const [title, setTitle] = useState(legend.title)
-  const [description, setDescription] = useState(legend.content.join("\n\n"))
-  const [img, setImg] = useState(legend.image)
-  const [source, setSource] = useState(legend.source)
-  const [sourceUrl, setSourceUrl] = useState(legend.source_url)
-  const id = legend._id
+  const [title, setTitle] = useState(funfact.title)
+  const [description, setDescription] = useState(funfact.content.join("\n\n"))
+  const [img, setImg] = useState(funfact.image)
+  const [source, setSource] = useState(funfact.source)
+  const [sourceUrl, setSourceUrl] = useState(funfact.source_url)
+  const id = funfact._id
   const [confirm, setConfirm] = useState(false)
 
   const updateTitle = (e) => {
@@ -81,47 +81,47 @@ const EditLegend = ({
     setConfirm(true)
     window.scroll(0, 0)
   }
-  const deleteLegend = async () => {
+  const deleteFunfact = async () => {
     setLoading(true)
     if (window.confirm(`Usunąć trwale: ${id} - ${title}?`)) {
       try {
         const response = await axios.delete(
-          `https://barracudadev.com/api/v1/legends/${id}`
+          `https://barracudadev.com/api/v1/funfacts/${id}`
         )
         setLoading(false)
-        window.alert(`Legenda usunięta`)
+        window.alert(`Ciekawostka usunięta`)
       } catch (e) {
         setLoading(false)
         window.alert(`😱 Axios request failed: ${e}`)
       }
-      getLegends()
+      getFunfacts()
       setActiveTab("list")
-      setEditedLegend({})
+      setEditedFunfact({})
     }
   }
 
   return confirm ? (
-    <ConfirmEdit
+    <ConfirmFunfactEdit
       setConfirm={setConfirm}
       setActiveTab={setActiveTab}
-      setEditedLegend={setEditedLegend}
-      legend={legend}
+      setEditedFunfact={setEditedFunfact}
+      funfact={funfact}
       id={id}
       title={title}
       description={description}
       source={source}
       sourceUrl={sourceUrl}
       img={img}
-      getLegends={getLegends}
+      getFunfacts={getFunfacts}
     />
   ) : (
     <div>
       <div className={classes.text}>
-        <LegendEditBtns
+        <FunfactEditBtns
           title={title}
           id={id}
-          deleteLegend={deleteLegend}
-          setEditedLegend={setEditedLegend}
+          deleteFunfact={deleteFunfact}
+          setEditedFunfact={setEditedFunfact}
           setActiveTab={setActiveTab}
           setConfirm={setConfirm}
         />
@@ -209,4 +209,4 @@ const EditLegend = ({
   )
 }
 
-export default EditLegend
+export default EditFunfact

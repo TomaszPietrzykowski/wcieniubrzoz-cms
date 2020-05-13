@@ -44,6 +44,7 @@ const Tips = () => {
           setEditedTip={setEditedTip}
           setActiveTab={setActiveTab}
           getTips={getTips}
+          setLoading={setLoading}
         />
       ) : (
         <Fragment>

@@ -44,6 +44,7 @@ const Legends = () => {
           setEditedLegend={setEditedLegend}
           setActiveTab={setActiveTab}
           getLegends={getLegends}
+          setLoading={setLoading}
         />
       ) : (
         <Fragment>

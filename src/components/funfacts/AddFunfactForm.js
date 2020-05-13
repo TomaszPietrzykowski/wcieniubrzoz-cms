@@ -1,13 +1,12 @@
 import React, { useState } from "react"
-import axios from "axios"
 import TextField from "@material-ui/core/TextField"
 import { makeStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 import Avatar from "@material-ui/core/Avatar"
 
-import LegendEditBtns from "./LegendEditBtns"
+import FunfactAddBtns from "./FunfactAddBtns"
 import FileUpload from "../FileUpload"
-import ConfirmEdit from "./ConfirmEdit"
+import ConfirmFunfactAdd from "./ConfirmFunfactAdd"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,20 +43,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const EditLegend = ({
-  legend,
-  setActiveTab,
-  setEditedLegend,
-  getLegends,
-  setLoading,
-}) => {
+const AddFunfactForm = ({ setLoading }) => {
   const classes = useStyles()
-  const [title, setTitle] = useState(legend.title)
-  const [description, setDescription] = useState(legend.content.join("\n\n"))
-  const [img, setImg] = useState(legend.image)
-  const [source, setSource] = useState(legend.source)
-  const [sourceUrl, setSourceUrl] = useState(legend.source_url)
-  const id = legend._id
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
+  const [img, setImg] = useState(
+    "https://barracudadev.com/uploads/avatars/avatar3.jpg"
+  )
+  const [source, setSource] = useState("")
+  const [sourceUrl, setSourceUrl] = useState("")
   const [confirm, setConfirm] = useState(false)
 
   const updateTitle = (e) => {
@@ -66,7 +60,6 @@ const EditLegend = ({
 
   const updateDescription = (e) => {
     setDescription(e.target.value)
-    console.log(description)
   }
 
   const updateSource = (e) => {
@@ -81,59 +74,25 @@ const EditLegend = ({
     setConfirm(true)
     window.scroll(0, 0)
   }
-  const deleteLegend = async () => {
-    setLoading(true)
-    if (window.confirm(`Usunąć trwale: ${id} - ${title}?`)) {
-      try {
-        const response = await axios.delete(
-          `https://barracudadev.com/api/v1/legends/${id}`
-        )
-        setLoading(false)
-        window.alert(`Legenda usunięta`)
-      } catch (e) {
-        setLoading(false)
-        window.alert(`😱 Axios request failed: ${e}`)
-      }
-      getLegends()
-      setActiveTab("list")
-      setEditedLegend({})
-    }
-  }
 
   return confirm ? (
-    <ConfirmEdit
+    <ConfirmFunfactAdd
+      setLoading={setLoading}
       setConfirm={setConfirm}
-      setActiveTab={setActiveTab}
-      setEditedLegend={setEditedLegend}
-      legend={legend}
-      id={id}
       title={title}
       description={description}
       source={source}
       sourceUrl={sourceUrl}
       img={img}
-      getLegends={getLegends}
     />
   ) : (
     <div>
       <div className={classes.text}>
-        <LegendEditBtns
-          title={title}
-          id={id}
-          deleteLegend={deleteLegend}
-          setEditedLegend={setEditedLegend}
-          setActiveTab={setActiveTab}
-          setConfirm={setConfirm}
-        />
+        <FunfactAddBtns title={title} setConfirm={setConfirm} />
       </div>
 
       <div className={classes.formContainer}>
-        <form
-          className={classes.root}
-          noValidate
-          autoComplete="off"
-          onSubmit={() => console.log("handle submition")}
-        >
+        <form className={classes.root} noValidate autoComplete="off">
           <div>
             <TextField
               style={{ margin: "auto", marginBottom: "30px" }}
@@ -148,6 +107,7 @@ const EditLegend = ({
           <div className={classes.alert}>{console.log("title error")}</div>
           <div>
             <TextField
+              required={true}
               style={{ margin: "auto", marginBottom: "30px" }}
               multiline
               id="outlined-password-input"
@@ -163,7 +123,7 @@ const EditLegend = ({
               style={{ margin: "auto", marginBottom: "30px" }}
               id="outlined-required"
               label="Źródło"
-              defaultValue={source || "źródło nieznane"}
+              defaultValue={source}
               variant="outlined"
               onChange={updateSource}
             />
@@ -173,7 +133,7 @@ const EditLegend = ({
               style={{ margin: "auto" }}
               id="outlined-required"
               label="Link do żródła"
-              defaultValue={sourceUrl || "brak"}
+              defaultValue={sourceUrl}
               variant="outlined"
               onChange={updateSourceUrl}
             />
@@ -209,4 +169,4 @@ const EditLegend = ({
   )
 }
 
-export default EditLegend
+export default AddFunfactForm

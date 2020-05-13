@@ -58,7 +58,11 @@ const DisplayLegendCard = ({ title, content, handleClick, id, img }) => {
     <Card className={classes.root} data-keystring={id} onClick={findTarget}>
       <CardActionArea
         data-keystring={id}
-        style={{ display: "flex", alignItems: "flex-start" }}
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
+        }}
       >
         <div>
           <Avatar className={classes.avatar} alt={`avatar`} src={img} />

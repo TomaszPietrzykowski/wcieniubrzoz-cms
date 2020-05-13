@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const DisplayTipCard = ({ title, content, handleClick, id, img }) => {
+const DisplayFunfactCard = ({ title, content, handleClick, id, img }) => {
   const classes = useStyles()
 
   const findTarget = (e) => {
@@ -60,8 +60,8 @@ const DisplayTipCard = ({ title, content, handleClick, id, img }) => {
         data-keystring={id}
         style={{
           display: "flex",
-          justifyContent: "flex-start",
           alignItems: "flex-start",
+          justifyContent: "flex-start",
         }}
       >
         <div>
@@ -94,4 +94,4 @@ const DisplayTipCard = ({ title, content, handleClick, id, img }) => {
   )
 }
 
-export default DisplayTipCard
+export default DisplayFunfactCard

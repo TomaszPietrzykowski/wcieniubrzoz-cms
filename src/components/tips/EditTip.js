@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const EditTip = ({ tip, setActiveTab, setEditedTip, getTips }) => {
+const EditTip = ({ tip, setActiveTab, setEditedTip, getTips, setLoading }) => {
   const classes = useStyles()
   const [title, setTitle] = useState(tip.title)
   const [description, setDescription] = useState(tip.content.join("\n\n"))
@@ -76,13 +76,16 @@ const EditTip = ({ tip, setActiveTab, setEditedTip, getTips }) => {
     window.scroll(0, 0)
   }
   const deleteTip = async () => {
+    setLoading(true)
     if (window.confirm(`Usunąć trwale: ${id} - ${title}?`)) {
       try {
         const response = await axios.delete(
           `https://barracudadev.com/api/v1/tips/${id}`
         )
+        setLoading(false)
         window.alert(`Porada usunięta`)
       } catch (e) {
+        setLoading(false)
         window.alert(`😱 Axios request failed: ${e}`)
       }
       getTips()
