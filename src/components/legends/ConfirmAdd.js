@@ -59,7 +59,7 @@ const ConfirmAdd = ({
   source,
   sourceUrl,
   img,
-  getLegends,
+  setLoading,
 }) => {
   const classes = useStyles()
   const newContent = description.split("\n").filter((string) => string !== "")
@@ -77,21 +77,17 @@ const ConfirmAdd = ({
     }
 
     try {
+      setLoading(true)
       const response = await axios.post(
         `https://barracudadev.com/api/v1/legends`,
         updated
       )
-      console.log(response)
+      setLoading(false)
       window.alert("Sukces: legenda dodana :)")
     } catch (e) {
+      setLoading(false)
       window.alert(`Błąd 😱 Tytuł i treść są wymagane`)
     }
-    // Show confirmation
-    // .............timeout
-    // getLegends()
-    // setActiveTab("list")
-    // setEditedLegend({})
-    // ___________________________________________________________________________________
   }
   const goBack = () => {
     setConfirm(false)
@@ -99,7 +95,7 @@ const ConfirmAdd = ({
 
   return (
     <div>
-      <div className={classes.subtitle}>Nowa legenda::</div>
+      <div className={classes.subtitle}>Nowa legenda:</div>
       <div className={classes.preview}>
         <h3 style={{ color: "#555" }}>{title}</h3>
         <div className={classes.content}>

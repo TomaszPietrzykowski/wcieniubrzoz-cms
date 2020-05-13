@@ -14,6 +14,7 @@ import Home from "./components/pages/Home"
 import Legends from "./components/pages/Legends"
 import AddLegend from "./components/pages/AddLegend"
 import Tips from "./components/pages/Tips"
+import AddTip from "./components/pages/AddTip"
 import Funfacts from "./components/pages/Funfacts"
 import Gallery from "./components/pages/Gallery"
 import NotFound from "./components/pages/NotFound"
@@ -45,6 +46,7 @@ function App() {
               <ProtectedRoute exact path="/legends" component={Legends} />
               <ProtectedRoute exact path="/addlegend" component={AddLegend} />
               <ProtectedRoute exact path="/tips" component={Tips} />
+              <ProtectedRoute exact path="/addtip" component={AddTip} />
               <ProtectedRoute exact path="/funfacts" component={Funfacts} />
               <ProtectedRoute exact path="/gallery" component={Gallery} />
               <Route

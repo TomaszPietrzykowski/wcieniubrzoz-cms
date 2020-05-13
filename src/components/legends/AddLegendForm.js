@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const AddLegendForm = () => {
+const AddLegendForm = ({ setLoading }) => {
   const classes = useStyles()
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
@@ -77,6 +77,7 @@ const AddLegendForm = () => {
 
   return confirm ? (
     <ConfirmAdd
+      setLoading={setLoading}
       setConfirm={setConfirm}
       title={title}
       description={description}

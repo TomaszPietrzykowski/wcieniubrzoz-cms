@@ -1,21 +1,21 @@
 import React, { useState, Fragment } from "react"
 
 import SectionHeader from "../ui/SectionHeader"
-import AddLegendForm from "../legends/AddLegendForm"
+import AddTipForm from "../tips/AddTipForm"
 import HelpBtn from "../ui/HelpBtn"
 import Loader from "../ui/Loader"
 
-const AddLegend = () => {
+const AddTip = () => {
   const [loading, setLoading] = useState(false)
 
   return (
     <div>
-      <SectionHeader title="Dodaj nową legendę" />
+      <SectionHeader title="Dodaj nową poradę" />
       {loading ? (
         <Loader />
       ) : (
         <Fragment>
-          <AddLegendForm setLoading={setLoading} />
+          <AddTipForm setLoading={setLoading} />
           <HelpBtn />
         </Fragment>
       )}
@@ -23,4 +23,4 @@ const AddLegend = () => {
   )
 }
 
-export default AddLegend
+export default AddTip

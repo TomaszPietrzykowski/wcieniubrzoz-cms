@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useState } from "react"
 import Button from "@material-ui/core/Button"
 import { Link } from "react-router-dom"
 import { withStyles, makeStyles } from "@material-ui/core/styles"
@@ -6,8 +6,6 @@ import IconButton from "@material-ui/core/IconButton"
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline"
 import Tooltip from "@material-ui/core/Tooltip"
 import ClickAwayListener from "@material-ui/core/ClickAwayListener"
-import { NavContext } from "../../context/NavContext"
-import { useMediaQuery } from "@material-ui/core"
 import Hidden from "@material-ui/core/Hidden"
 
 const useStyles = makeStyles((theme) => ({
@@ -71,21 +69,11 @@ const useStyles = makeStyles((theme) => ({
 
 const LegendAddBtns = ({
   title,
-  //   setEditedLegend,
-  //   setActiveTab,
+
   setConfirm,
-  //   deleteLegend,
 }) => {
   const classes = useStyles()
-  const { trigger, runTrigger } = useContext(NavContext)
   const [open, setOpen] = useState(false)
-
-  const matchesXS = useMediaQuery("xs")
-
-  // const goBack = () => {
-  //   // setActiveTab("list")
-  //   // setEditedLegend({})
-  // }
 
   const nextStep = () => {
     setConfirm(true)
@@ -168,7 +156,6 @@ const LegendAddBtns = ({
           className={classes.btn}
           component={Link}
           to="/legends"
-          // onClick={goBack}
         >
           Powrót
         </Button>

@@ -2,8 +2,8 @@ import React, { useState, useEffect, Fragment } from "react"
 
 import SectionHeader from "../ui/SectionHeader"
 import HelpBtn from "../ui/HelpBtn"
-import DisplayTipList from "../legends/DisplayTipList"
-import EditTip from "../legends/EditTip"
+import DisplayTipList from "../tips/DisplayTipList"
+import EditTip from "../tips/EditTip"
 import Loader from "../ui/Loader"
 
 const Tips = () => {
@@ -20,7 +20,7 @@ const Tips = () => {
     window.scroll(0, 0)
     setLoading(true)
     try {
-      const res = await fetch("https://barracudadev.com/api/v1/legends")
+      const res = await fetch("https://barracudadev.com/api/v1/tips")
       const data = await res.json()
       const downloaded = data.data
       setTips(downloaded)
