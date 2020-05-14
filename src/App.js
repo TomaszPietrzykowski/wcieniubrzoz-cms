@@ -22,6 +22,7 @@ import NotFound from "./components/pages/NotFound"
 import Help from "./components/pages/Help"
 import Footer from "./components/ui/Footer"
 import ScrollToTop from "./components/ScrollToTop"
+import FloatButton from "./components/FloatButton"
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -61,6 +62,7 @@ function App() {
               <Route exact path="/*" component={NotFound} />
             </Switch>
           </div>
+          <FloatButton />
           <Footer />
         </ScrollToTop>
       </BrowserRouter>

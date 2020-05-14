@@ -16,7 +16,7 @@ class AuthContexProvider extends Component {
       {
         name: "Kuba",
         login: "mentalmesh",
-        password: "tranzystor86",
+        password: "muerte",
         avatar: "avatar2.jpg",
       },
       {
