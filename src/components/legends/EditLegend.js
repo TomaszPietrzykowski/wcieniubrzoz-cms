@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import axios from "axios"
 import TextField from "@material-ui/core/TextField"
 import { makeStyles } from "@material-ui/core/styles"
@@ -8,6 +8,7 @@ import Avatar from "@material-ui/core/Avatar"
 import LegendEditBtns from "./LegendEditBtns"
 import FileUpload from "../FileUpload"
 import ConfirmEdit from "./ConfirmEdit"
+import { AuthContext } from "../../context/AuthContext"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,6 +53,7 @@ const EditLegend = ({
   setLoading,
 }) => {
   const classes = useStyles()
+  const { loggedInUser } = useContext(AuthContext)
   const [title, setTitle] = useState(legend.title)
   const [description, setDescription] = useState(legend.content.join("\n\n"))
   const [img, setImg] = useState(legend.image)
@@ -85,14 +87,22 @@ const EditLegend = ({
     setLoading(true)
     if (window.confirm(`Usunąć trwale: ${id} - ${title}?`)) {
       try {
-        const response = await axios.delete(
-          `https://barracudadev.com/api/v1/legends/${id}`
+        const token = loggedInUser.token
+        const config = { headers: { Authorization: `Bearer ${token}` } }
+        await axios.delete(
+          `https://gardens.barracudadev.com/api/v1/legends/${id}`,
+          config
         )
         setLoading(false)
         window.alert(`Legenda usunięta`)
       } catch (e) {
-        setLoading(false)
-        window.alert(`😱 Axios request failed: ${e}`)
+        if (e.response) {
+          setLoading(false)
+          window.alert(e.response.data.message)
+        } else {
+          window.alert(e)
+          setLoading(false)
+        }
       }
       getLegends()
       setActiveTab("list")
@@ -113,6 +123,7 @@ const EditLegend = ({
       sourceUrl={sourceUrl}
       img={img}
       getLegends={getLegends}
+      setLoading={setLoading}
     />
   ) : (
     <div>

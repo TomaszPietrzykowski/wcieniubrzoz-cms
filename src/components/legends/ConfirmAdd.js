@@ -82,7 +82,7 @@ const ConfirmAdd = ({
       setLoading(true)
       const token = loggedInUser.token
       const config = { headers: { Authorization: `Bearer ${token}` } }
-      console.log(config)
+
       const response = await axios.post(
         `https://gardens.barracudadev.com/api/v1/legends`,
         updated,
@@ -91,8 +91,13 @@ const ConfirmAdd = ({
       setLoading(false)
       window.alert("Sukces: legenda dodana :)")
     } catch (e) {
-      setLoading(false)
-      window.alert(e)
+      if (e.response) {
+        setLoading(false)
+        window.alert(e.response.data.message)
+      } else {
+        window.alert(e)
+        setLoading(false)
+      }
     }
   }
   const goBack = () => {

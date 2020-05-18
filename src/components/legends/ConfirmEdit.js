@@ -1,8 +1,9 @@
-import React from "react"
+import React, { useContext } from "react"
 import Button from "@material-ui/core/Button"
 import { makeStyles } from "@material-ui/core/styles"
 import Avatar from "@material-ui/core/Avatar"
 import axios from "axios"
+import { AuthContext } from "../../context/AuthContext"
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -64,8 +65,10 @@ const ConfirmEdit = ({
   sourceUrl,
   img,
   getLegends,
+  setLoading,
 }) => {
   const classes = useStyles()
+  const { loggedInUser } = useContext(AuthContext)
   const parsed = description.split("\n").filter((string) => string !== "")
   const newContent = parsed.length > 0 ? parsed : legend.content
   const newTitle = title || legend.title
@@ -80,14 +83,24 @@ const ConfirmEdit = ({
     source_url: newSourceUrl,
   }
   const executePatch = async () => {
+    setLoading(true)
     try {
+      const token = loggedInUser.token
+      const config = { headers: { Authorization: `Bearer ${token}` } }
       const response = await axios.patch(
-        `https://barracudadev.com/api/v1/legends/${id}`,
-        updated
+        `https://gardens.barracudadev.com/api/v1/legends/${id}`,
+        updated,
+        config
       )
       window.alert("Sukces: legenda zaktualizowana :)")
     } catch (e) {
-      window.alert(`😱 Axios request failed: ${e}`)
+      if (e.response) {
+        setLoading(false)
+        window.alert(e.response.data.message)
+      } else {
+        window.alert(e)
+        setLoading(false)
+      }
     }
     getLegends()
     setActiveTab("list")
