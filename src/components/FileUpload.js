@@ -1,10 +1,11 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 import axios from "axios"
 
 import preview from "../assets/preview.png"
 import Message from "./Message"
+import { AuthContext } from "../context/AuthContext"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const FileUpload = ({ setImg }) => {
+  const { loggedInUser } = useContext(AuthContext)
   const classes = useStyles()
   const [file, setFile] = useState("")
   const [filename, setFilename] = useState("")
@@ -72,6 +74,7 @@ const FileUpload = ({ setImg }) => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${loggedInUser.token}`,
           },
         }
       )

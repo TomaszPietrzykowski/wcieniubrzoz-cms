@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       margin: theme.spacing(1),
     },
+    [theme.breakpoints.down("xs")]: {
+      right: "0.5rem",
+      bottom: "0.5rem",
+    },
   },
   extendedIcon: {
     marginRight: theme.spacing(1),
