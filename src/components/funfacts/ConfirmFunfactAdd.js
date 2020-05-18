@@ -79,7 +79,7 @@ const ConfirmFunfactAdd = ({
     try {
       setLoading(true)
       const response = await axios.post(
-        `https://barracudadev.com/api/v1/funfacts`,
+        `https://gardens.barracudadev.com/api/v1/funfacts`,
         updated
       )
       setLoading(false)

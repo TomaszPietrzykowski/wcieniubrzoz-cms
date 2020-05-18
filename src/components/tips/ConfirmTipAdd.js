@@ -79,7 +79,7 @@ const ConfirmTipAdd = ({
     try {
       setLoading(true)
       const response = await axios.post(
-        `https://barracudadev.com/api/v1/tips`,
+        `https://gardens.barracudadev.com/api/v1/tips`,
         updated
       )
       setLoading(false)

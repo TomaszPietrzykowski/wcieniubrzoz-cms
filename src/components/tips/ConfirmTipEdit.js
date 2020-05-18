@@ -82,7 +82,7 @@ const ConfirmTipEdit = ({
   const executePatch = async () => {
     try {
       const response = await axios.patch(
-        `https://barracudadev.com/api/v1/tips/${id}`,
+        `https://gardens.barracudadev.com/api/v1/tips/${id}`,
         updated
       )
       window.alert("Sukces: Porada zaktualizowana :)")

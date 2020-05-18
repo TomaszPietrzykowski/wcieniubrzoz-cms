@@ -82,7 +82,7 @@ const ConfirmFunfactEdit = ({
   const executePatch = async () => {
     try {
       const response = await axios.patch(
-        `https://barracudadev.com/api/v1/funfacts/${id}`,
+        `https://gardens.barracudadev.com/api/v1/funfacts/${id}`,
         updated
       )
       window.alert("Sukces: Ciekawostka zaktualizowana :)")

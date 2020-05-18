@@ -86,7 +86,7 @@ const EditFunfact = ({
     if (window.confirm(`Usunąć trwale: ${id} - ${title}?`)) {
       try {
         const response = await axios.delete(
-          `https://barracudadev.com/api/v1/funfacts/${id}`
+          `https://gardens.barracudadev.com/api/v1/funfacts/${id}`
         )
         setLoading(false)
         window.alert(`Ciekawostka usunięta`)

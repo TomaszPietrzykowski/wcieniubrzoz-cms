@@ -61,7 +61,7 @@ const DashboardTab = ({ img, title, description, add, edit }) => {
       <CardActionArea component={Link} to={`/${edit}`} onClick={runTrigger}>
         <CardMedia
           className={classes.media}
-          image={`https://barracudadev.com/uploads/${img}`}
+          image={`https://gardens.barracudadev.com/uploads/${img}`}
           title={title}
         />
         <CardContent>
