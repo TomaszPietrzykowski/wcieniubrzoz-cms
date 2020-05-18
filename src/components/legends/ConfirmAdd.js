@@ -1,8 +1,9 @@
-import React from "react"
+import React, { useContext } from "react"
 import Button from "@material-ui/core/Button"
 import { makeStyles } from "@material-ui/core/styles"
 import Avatar from "@material-ui/core/Avatar"
 import axios from "axios"
+import { AuthContext } from "../../context/AuthContext"
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -62,6 +63,7 @@ const ConfirmAdd = ({
   setLoading,
 }) => {
   const classes = useStyles()
+  const { loggedInUser } = useContext(AuthContext)
   const newContent = description.split("\n").filter((string) => string !== "")
   const newTitle = title
   const newSource = source
@@ -78,15 +80,19 @@ const ConfirmAdd = ({
 
     try {
       setLoading(true)
+      const token = loggedInUser.token
+      const config = { headers: { Authorization: `Bearer ${token}` } }
+      console.log(config)
       const response = await axios.post(
-        `https://barracudadev.com/api/v1/legends`,
-        updated
+        `https://gardens.barracudadev.com/api/v1/legends`,
+        updated,
+        config
       )
       setLoading(false)
       window.alert("Sukces: legenda dodana :)")
     } catch (e) {
       setLoading(false)
-      window.alert(`Błąd 😱 Tytuł i treść są wymagane`)
+      window.alert(e)
     }
   }
   const goBack = () => {

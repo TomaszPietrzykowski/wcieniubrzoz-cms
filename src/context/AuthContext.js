@@ -6,26 +6,6 @@ class AuthContexProvider extends Component {
   state = {
     isLoggedIn: false,
     loggedInUser: {},
-    users: [
-      {
-        name: "Dana",
-        login: "dan23",
-        password: "marmaris14",
-        avatar: "avatar1.jpg",
-      },
-      {
-        name: "Kuba",
-        login: "mentalmesh",
-        password: "muerte",
-        avatar: "avatar2.jpg",
-      },
-      {
-        name: "Tomek",
-        login: "barracuda",
-        password: "ProgramistaJS",
-        avatar: "avatar3.jpg",
-      },
-    ],
   }
   logIn = () => {
     this.setState({ isLoggedIn: true })

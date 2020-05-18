@@ -57,7 +57,7 @@ const UserPanel = ({ user }) => {
             <Avatar
               className={classes.listItemAvatar}
               alt={`${user}'s avatar`}
-              src={`https://barracudadev.com/uploads/avatars/${user.avatar}`}
+              src={`${user.avatar}`}
             />
           </ListItemAvatar>
           <ListItemText

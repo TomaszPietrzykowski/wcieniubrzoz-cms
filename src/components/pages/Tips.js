@@ -20,7 +20,7 @@ const Tips = () => {
     window.scroll(0, 0)
     setLoading(true)
     try {
-      const res = await fetch("https://barracudadev.com/api/v1/tips")
+      const res = await fetch("https://gardens.barracudadev.com/api/v1/tips")
       const data = await res.json()
       const downloaded = data.data
       setTips(downloaded)

@@ -20,7 +20,9 @@ const Funfacts = () => {
     window.scroll(0, 0)
     setLoading(true)
     try {
-      const res = await fetch("https://barracudadev.com/api/v1/funfacts")
+      const res = await fetch(
+        "https://gardens.barracudadev.com/api/v1/funfacts"
+      )
       const data = await res.json()
       const downloaded = data.data
       setFunfacts(downloaded)

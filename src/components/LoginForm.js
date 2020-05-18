@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react"
 import TextField from "@material-ui/core/TextField"
 import { makeStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
+import axios from "axios"
 
 import { AuthContext } from "../context/AuthContext"
 
@@ -38,10 +39,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const LoginForm = () => {
+const LoginForm = ({ setLoading }) => {
   const classes = useStyles()
 
-  const { logIn, users, setUser } = useContext(AuthContext)
+  const { logIn, setUser } = useContext(AuthContext)
   const [login, setLogin] = useState("")
   const [password, setPassword] = useState("")
   const [loginError, setLoginError] = useState("")
@@ -55,27 +56,19 @@ const LoginForm = () => {
     setPassword(e.target.value)
   }
 
-  const handleSubmition = (e) => {
+  const handleSubmition = async (e) => {
     e.preventDefault()
-    const userCheck = users.filter((user) => user.login === login)[0]
-    if (userCheck) {
-      if (userCheck.password === password) {
-        setUser(userCheck)
-        logIn()
-      } else {
-        setPasswordError("Nieprawidłowe hasło")
-        setTimeout(() => {
-          setPasswordError("")
-        }, 3000)
-        return
-      }
-    } else {
-      setLoginError(`Użytkownik ${login} nie istnieje`)
-      setTimeout(() => {
-        setLoginError("")
-      }, 3000)
-      return
-    }
+    setLoading(true)
+    const response = await axios.post(
+      "https://gardens.barracudadev.com/api/v1/users/login",
+      { login, password }
+    )
+    const userData = response.data.data
+    const token = response.data.token
+    const activeUser = { ...userData, token: token }
+    console.log(activeUser)
+    setUser(activeUser)
+    logIn()
   }
 
   return (

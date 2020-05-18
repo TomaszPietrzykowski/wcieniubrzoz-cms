@@ -48,7 +48,7 @@ const AddLegendForm = ({ setLoading }) => {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [img, setImg] = useState(
-    "https://barracudadev.com/uploads/avatars/avatar3.jpg"
+    "https://gardens.barracudadev.com/uploads/placeholder.svg"
   )
   const [source, setSource] = useState("")
   const [sourceUrl, setSourceUrl] = useState("")

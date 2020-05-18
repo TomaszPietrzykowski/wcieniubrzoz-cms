@@ -67,7 +67,7 @@ const FileUpload = ({ setImg }) => {
     formData.append("file", file)
     try {
       const res = await axios.post(
-        "https://www.barracudadev.com/api/v1/upload",
+        "https://gardens.barracudadev.com/api/v1/upload",
         formData,
         {
           headers: {
@@ -78,7 +78,7 @@ const FileUpload = ({ setImg }) => {
       const { fileName, filePath } = res.data
 
       setUploadedFile({ fileName, filePath })
-      setImg(`https://barracudadev.com/uploads/${fileName}`)
+      setImg(`https://gardens.barracudadev.com/uploads/${fileName}`)
       showSuccess(`Zapisano: ${fileName}`)
       setChanged(false)
     } catch (err) {
