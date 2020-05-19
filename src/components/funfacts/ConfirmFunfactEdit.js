@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import Button from "@material-ui/core/Button"
 import { makeStyles } from "@material-ui/core/styles"
 import Avatar from "@material-ui/core/Avatar"
 import axios from "axios"
+
+import { AuthContext } from "../../context/AuthContext"
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -64,8 +66,10 @@ const ConfirmFunfactEdit = ({
   sourceUrl,
   img,
   getFunfacts,
+  setLoading,
 }) => {
   const classes = useStyles()
+  const { loggedInUser } = useContext(AuthContext)
   const parsed = description.split("\n").filter((string) => string !== "")
   const newContent = parsed.length > 0 ? parsed : funfact.content
   const newTitle = title || funfact.title
@@ -80,14 +84,24 @@ const ConfirmFunfactEdit = ({
     source_url: newSourceUrl,
   }
   const executePatch = async () => {
+    setLoading(true)
     try {
-      const response = await axios.patch(
+      const token = loggedInUser.token
+      const config = { headers: { Authorization: `Bearer ${token}` } }
+      await axios.patch(
         `https://gardens.barracudadev.com/api/v1/funfacts/${id}`,
-        updated
+        updated,
+        config
       )
       window.alert("Sukces: Ciekawostka zaktualizowana :)")
     } catch (e) {
-      window.alert(`😱 Axios request failed: ${e}`)
+      if (e.response) {
+        setLoading(false)
+        window.alert(e.response.data.message)
+      } else {
+        window.alert(e)
+        setLoading(false)
+      }
     }
     getFunfacts()
     setActiveTab("list")

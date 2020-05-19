@@ -3,6 +3,7 @@ import Button from "@material-ui/core/Button"
 import { makeStyles } from "@material-ui/core/styles"
 import Avatar from "@material-ui/core/Avatar"
 import axios from "axios"
+
 import { AuthContext } from "../../context/AuthContext"
 
 const useStyles = makeStyles((theme) => ({
@@ -78,12 +79,12 @@ const ConfirmAdd = ({
       source_url: newSourceUrl,
     }
 
+    setLoading(true)
     try {
-      setLoading(true)
       const token = loggedInUser.token
       const config = { headers: { Authorization: `Bearer ${token}` } }
 
-      const response = await axios.post(
+      await axios.post(
         `https://gardens.barracudadev.com/api/v1/legends`,
         updated,
         config

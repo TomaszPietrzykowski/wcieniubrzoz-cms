@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import axios from "axios"
 import TextField from "@material-ui/core/TextField"
 import { makeStyles } from "@material-ui/core/styles"
@@ -8,6 +8,7 @@ import Avatar from "@material-ui/core/Avatar"
 import FunfactEditBtns from "./FunfactEditBtns"
 import FileUpload from "../FileUpload"
 import ConfirmFunfactEdit from "./ConfirmFunfactEdit"
+import { AuthContext } from "../../context/AuthContext"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,6 +53,7 @@ const EditFunfact = ({
   setLoading,
 }) => {
   const classes = useStyles()
+  const { loggedInUser } = useContext(AuthContext)
   const [title, setTitle] = useState(funfact.title)
   const [description, setDescription] = useState(funfact.content.join("\n\n"))
   const [img, setImg] = useState(funfact.image)
@@ -85,14 +87,22 @@ const EditFunfact = ({
     setLoading(true)
     if (window.confirm(`Usunąć trwale: ${id} - ${title}?`)) {
       try {
-        const response = await axios.delete(
-          `https://gardens.barracudadev.com/api/v1/funfacts/${id}`
+        const token = loggedInUser.token
+        const config = { headers: { Authorization: `Bearer ${token}` } }
+        await axios.delete(
+          `https://gardens.barracudadev.com/api/v1/funfacts/${id}`,
+          config
         )
         setLoading(false)
         window.alert(`Ciekawostka usunięta`)
       } catch (e) {
-        setLoading(false)
-        window.alert(`😱 Axios request failed: ${e}`)
+        if (e.response) {
+          setLoading(false)
+          window.alert(e.response.data.message)
+        } else {
+          window.alert(e)
+          setLoading(false)
+        }
       }
       getFunfacts()
       setActiveTab("list")
@@ -113,6 +123,7 @@ const EditFunfact = ({
       sourceUrl={sourceUrl}
       img={img}
       getFunfacts={getFunfacts}
+      setLoading={setLoading}
     />
   ) : (
     <div>

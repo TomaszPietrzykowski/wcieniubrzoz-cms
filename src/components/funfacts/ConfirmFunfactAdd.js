@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import Button from "@material-ui/core/Button"
 import { makeStyles } from "@material-ui/core/styles"
 import Avatar from "@material-ui/core/Avatar"
 import axios from "axios"
+
+import { AuthContext } from "../../context/AuthContext"
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -62,6 +64,7 @@ const ConfirmFunfactAdd = ({
   setLoading,
 }) => {
   const classes = useStyles()
+  const { loggedInUser } = useContext(AuthContext)
   const newContent = description.split("\n").filter((string) => string !== "")
   const newTitle = title
   const newSource = source
@@ -76,17 +79,26 @@ const ConfirmFunfactAdd = ({
       source_url: newSourceUrl,
     }
 
+    setLoading(true)
     try {
-      setLoading(true)
-      const response = await axios.post(
+      const token = loggedInUser.token
+      const config = { headers: { Authorization: `Bearer ${token}` } }
+
+      await axios.post(
         `https://gardens.barracudadev.com/api/v1/funfacts`,
-        updated
+        updated,
+        config
       )
       setLoading(false)
       window.alert("Sukces: ciekawostka dodana :)")
     } catch (e) {
-      setLoading(false)
-      window.alert(`Błąd 😱 Treść jest wymagana`)
+      if (e.response) {
+        setLoading(false)
+        window.alert(e.response.data.message)
+      } else {
+        window.alert(e)
+        setLoading(false)
+      }
     }
   }
   const goBack = () => {

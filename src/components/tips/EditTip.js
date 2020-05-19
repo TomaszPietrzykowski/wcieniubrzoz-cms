@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import axios from "axios"
 import TextField from "@material-ui/core/TextField"
 import { makeStyles } from "@material-ui/core/styles"
@@ -8,6 +8,7 @@ import Avatar from "@material-ui/core/Avatar"
 import TipEditBtns from "./TipEditBtns"
 import FileUpload from "../FileUpload"
 import ConfirmTipEdit from "./ConfirmTipEdit"
+import { AuthContext } from "../../context/AuthContext"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 
 const EditTip = ({ tip, setActiveTab, setEditedTip, getTips, setLoading }) => {
   const classes = useStyles()
+  const { loggedInUser } = useContext(AuthContext)
   const [title, setTitle] = useState(tip.title)
   const [description, setDescription] = useState(tip.content.join("\n\n"))
   const [img, setImg] = useState(tip.image)
@@ -79,14 +81,22 @@ const EditTip = ({ tip, setActiveTab, setEditedTip, getTips, setLoading }) => {
     setLoading(true)
     if (window.confirm(`Usunąć trwale: ${id} - ${title}?`)) {
       try {
-        const response = await axios.delete(
-          `https://gardens.barracudadev.com/api/v1/tips/${id}`
+        const token = loggedInUser.token
+        const config = { headers: { Authorization: `Bearer ${token}` } }
+        await axios.delete(
+          `https://gardens.barracudadev.com/api/v1/tips/${id}`,
+          config
         )
         setLoading(false)
         window.alert(`Porada usunięta`)
       } catch (e) {
-        setLoading(false)
-        window.alert(`😱 Axios request failed: ${e}`)
+        if (e.response) {
+          setLoading(false)
+          window.alert(e.response.data.message)
+        } else {
+          window.alert(e)
+          setLoading(false)
+        }
       }
       getTips()
       setActiveTab("list")
@@ -107,6 +117,7 @@ const EditTip = ({ tip, setActiveTab, setEditedTip, getTips, setLoading }) => {
       sourceUrl={sourceUrl}
       img={img}
       getTips={getTips}
+      setLoading={setLoading}
     />
   ) : (
     <div>

@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import Button from "@material-ui/core/Button"
 import { makeStyles } from "@material-ui/core/styles"
 import Avatar from "@material-ui/core/Avatar"
 import axios from "axios"
+
+import { AuthContext } from "../../context/AuthContext"
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -62,6 +64,7 @@ const ConfirmTipAdd = ({
   setLoading,
 }) => {
   const classes = useStyles()
+  const { loggedInUser } = useContext(AuthContext)
   const newContent = description.split("\n").filter((string) => string !== "")
   const newTitle = title
   const newSource = source
@@ -78,15 +81,24 @@ const ConfirmTipAdd = ({
 
     try {
       setLoading(true)
+      const token = loggedInUser.token
+      const config = { headers: { Authorization: `Bearer ${token}` } }
+
       const response = await axios.post(
         `https://gardens.barracudadev.com/api/v1/tips`,
-        updated
+        updated,
+        config
       )
       setLoading(false)
       window.alert("Sukces: porada dodana :)")
     } catch (e) {
-      setLoading(false)
-      window.alert(`Błąd 😱 Treść jest wymagana`)
+      if (e.response) {
+        setLoading(false)
+        window.alert(e.response.data.message)
+      } else {
+        window.alert(e)
+        setLoading(false)
+      }
     }
   }
   const goBack = () => {

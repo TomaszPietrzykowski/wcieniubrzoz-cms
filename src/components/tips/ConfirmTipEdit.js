@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import Button from "@material-ui/core/Button"
 import { makeStyles } from "@material-ui/core/styles"
 import Avatar from "@material-ui/core/Avatar"
 import axios from "axios"
+
+import { AuthContext } from "../../context/AuthContext"
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -64,8 +66,10 @@ const ConfirmTipEdit = ({
   sourceUrl,
   img,
   getTips,
+  setLoading,
 }) => {
   const classes = useStyles()
+  const { loggedInUser } = useContext(AuthContext)
   const parsed = description.split("\n").filter((string) => string !== "")
   const newContent = parsed.length > 0 ? parsed : tip.content
   const newTitle = title || tip.title
@@ -80,14 +84,24 @@ const ConfirmTipEdit = ({
     source_url: newSourceUrl,
   }
   const executePatch = async () => {
+    setLoading(true)
     try {
+      const token = loggedInUser.token
+      const config = { headers: { Authorization: `Bearer ${token}` } }
       const response = await axios.patch(
         `https://gardens.barracudadev.com/api/v1/tips/${id}`,
-        updated
+        updated,
+        config
       )
       window.alert("Sukces: Porada zaktualizowana :)")
     } catch (e) {
-      window.alert(`😱 Axios request failed: ${e}`)
+      if (e.response) {
+        setLoading(false)
+        window.alert(e.response.data.message)
+      } else {
+        window.alert(e)
+        setLoading(false)
+      }
     }
     getTips()
     setActiveTab("list")
