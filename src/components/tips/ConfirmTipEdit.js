@@ -88,7 +88,7 @@ const ConfirmTipEdit = ({
     try {
       const token = loggedInUser.token
       const config = { headers: { Authorization: `Bearer ${token}` } }
-      const response = await axios.patch(
+      await axios.patch(
         `https://gardens.barracudadev.com/api/v1/tips/${id}`,
         updated,
         config

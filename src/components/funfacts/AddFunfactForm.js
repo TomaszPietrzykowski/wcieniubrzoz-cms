@@ -104,7 +104,7 @@ const AddFunfactForm = ({ setLoading }) => {
               onChange={updateTitle}
             />
           </div>
-          <div className={classes.alert}>{console.log("title error")}</div>
+          <div className={classes.alert} />
           <div>
             <TextField
               required={true}
@@ -117,7 +117,7 @@ const AddFunfactForm = ({ setLoading }) => {
               onChange={updateDescription}
             />
           </div>
-          <div className={classes.alert}>{console.log("content error")}</div>
+          <div className={classes.alert} />
           <div>
             <TextField
               style={{ margin: "auto", marginBottom: "30px" }}

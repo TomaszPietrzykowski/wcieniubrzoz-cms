@@ -45,8 +45,6 @@ const LoginForm = ({ setLoading }) => {
   const { logIn, setUser } = useContext(AuthContext)
   const [login, setLogin] = useState("")
   const [password, setPassword] = useState("")
-  const [loginError, setLoginError] = useState("")
-  const [passwordError, setPasswordError] = useState("")
 
   const updateLogin = (e) => {
     setLogin(e.target.value)
@@ -59,16 +57,25 @@ const LoginForm = ({ setLoading }) => {
   const handleSubmition = async (e) => {
     e.preventDefault()
     setLoading(true)
-    const response = await axios.post(
-      "https://gardens.barracudadev.com/api/v1/users/login",
-      { login, password }
-    )
-    const userData = response.data.data
-    const token = response.data.token
-    const activeUser = { ...userData, token: token }
-    console.log(activeUser)
-    setUser(activeUser)
-    logIn()
+    try {
+      const response = await axios.post(
+        "https://gardens.barracudadev.com/api/v1/users/login",
+        { login, password }
+      )
+      const userData = response.data.data
+      const token = response.data.token
+      const activeUser = { ...userData, token: token }
+      setUser(activeUser)
+      logIn()
+    } catch (e) {
+      if (e.response) {
+        setLoading(false)
+        window.alert(e.response.data.message)
+      } else {
+        window.alert("Autentykacja nieudana")
+        setLoading(false)
+      }
+    }
   }
 
   return (
@@ -89,7 +96,7 @@ const LoginForm = ({ setLoading }) => {
             onChange={updateLogin}
           />
         </div>
-        <div className={classes.alert}>{loginError}</div>
+        <div className={classes.alert} />
         <div>
           <TextField
             required
@@ -101,7 +108,7 @@ const LoginForm = ({ setLoading }) => {
             onChange={updatePassword}
           />
         </div>
-        <div className={classes.alert}>{passwordError}</div>
+        <div className={classes.alert} />
         <div className={classes.btnContainer}>
           <Button
             variant="contained"

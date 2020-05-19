@@ -84,7 +84,7 @@ const ConfirmTipAdd = ({
       const token = loggedInUser.token
       const config = { headers: { Authorization: `Bearer ${token}` } }
 
-      const response = await axios.post(
+      await axios.post(
         `https://gardens.barracudadev.com/api/v1/tips`,
         updated,
         config

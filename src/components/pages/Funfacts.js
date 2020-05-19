@@ -28,8 +28,14 @@ const Funfacts = () => {
       setFunfacts(downloaded)
 
       setLoading(false)
-    } catch (err) {
-      console.log(err)
+    } catch (e) {
+      if (e.response) {
+        setLoading(false)
+        window.alert(e.response.data.message)
+      } else {
+        window.alert(e)
+        setLoading(false)
+      }
     }
   }
 

@@ -176,7 +176,7 @@ const Header = (props) => {
           break
       }
     })
-  }, [value, routes, trigger])
+  }, [value, routes, routes1, trigger])
 
   const tabs = (
     <React.Fragment>

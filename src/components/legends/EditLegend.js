@@ -68,7 +68,6 @@ const EditLegend = ({
 
   const updateDescription = (e) => {
     setDescription(e.target.value)
-    console.log(description)
   }
 
   const updateSource = (e) => {
@@ -139,12 +138,7 @@ const EditLegend = ({
       </div>
 
       <div className={classes.formContainer}>
-        <form
-          className={classes.root}
-          noValidate
-          autoComplete="off"
-          onSubmit={() => console.log("handle submition")}
-        >
+        <form className={classes.root} noValidate autoComplete="off">
           <div>
             <TextField
               style={{ margin: "auto", marginBottom: "30px" }}
@@ -156,7 +150,7 @@ const EditLegend = ({
               onChange={updateTitle}
             />
           </div>
-          <div className={classes.alert}>{console.log("title error")}</div>
+          <div className={classes.alert} />
           <div>
             <TextField
               style={{ margin: "auto", marginBottom: "30px" }}
@@ -168,7 +162,7 @@ const EditLegend = ({
               onChange={updateDescription}
             />
           </div>
-          <div className={classes.alert}>{console.log("content error")}</div>
+          <div className={classes.alert} />
           <div>
             <TextField
               style={{ margin: "auto", marginBottom: "30px" }}

@@ -62,7 +62,6 @@ const EditTip = ({ tip, setActiveTab, setEditedTip, getTips, setLoading }) => {
 
   const updateDescription = (e) => {
     setDescription(e.target.value)
-    console.log(description)
   }
 
   const updateSource = (e) => {
@@ -133,12 +132,7 @@ const EditTip = ({ tip, setActiveTab, setEditedTip, getTips, setLoading }) => {
       </div>
 
       <div className={classes.formContainer}>
-        <form
-          className={classes.root}
-          noValidate
-          autoComplete="off"
-          onSubmit={() => console.log("handle submition")}
-        >
+        <form className={classes.root} noValidate autoComplete="off">
           <div>
             <TextField
               style={{ margin: "auto", marginBottom: "30px" }}
@@ -150,7 +144,7 @@ const EditTip = ({ tip, setActiveTab, setEditedTip, getTips, setLoading }) => {
               onChange={updateTitle}
             />
           </div>
-          <div className={classes.alert}>{console.log("title error")}</div>
+          <div className={classes.alert} />
           <div>
             <TextField
               style={{ margin: "auto", marginBottom: "30px" }}
@@ -162,7 +156,7 @@ const EditTip = ({ tip, setActiveTab, setEditedTip, getTips, setLoading }) => {
               onChange={updateDescription}
             />
           </div>
-          <div className={classes.alert}>{console.log("content error")}</div>
+          <div className={classes.alert} />
           <div>
             <TextField
               style={{ margin: "auto", marginBottom: "30px" }}
