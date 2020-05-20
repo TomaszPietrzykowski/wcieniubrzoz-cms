@@ -1,39 +1,61 @@
 import React, { Fragment } from "react"
+import { makeStyles } from "@material-ui/core/styles"
 
 import DisplayCollectionTile from "./DisplayCollectionTile"
 import GalleryBtns from "./GalleryBtns"
 
-const DisplayGallery = ({ tips, setEditedTip, setActiveTab }) => {
+const useStyles = makeStyles((theme) => ({
+  galleryContainer: {
+    display: "grid",
+    gridTemplateColumns: "repeat(2, 1fr)",
+    gridGap: "5rem",
+    marginTop: "5rem",
+    marginBottom: "4rem",
+    [theme.breakpoints.down("xs")]: {
+      gridTemplateColumns: "repeat(1, 1fr)",
+      gridGap: "3rem",
+      marginTop: "1rem",
+      marginBottom: "3rem",
+    },
+  },
+}))
+
+const DisplayGallery = ({ gallery, setEditedCollection, setActiveTab }) => {
+  const classes = useStyles()
+
   const handleClick = (id) => {
-    const edited = tips.filter((l) => l._id === id)[0]
+    const edited = gallery.filter((l) => l._id === id)[0]
     if (edited) {
-      setEditedTip(edited)
+      setEditedCollection(edited)
       window.scrollTo(0, 0)
       setActiveTab("edit")
     }
     return
   }
 
-  const arr = tips.sort((a, b) =>
+  const arr = gallery.sort((a, b) =>
     a.title > b.title ? 1 : b.title > a.title ? -1 : 0
   )
 
   return (
     <Fragment>
       <GalleryBtns />
-      {arr.map((tip, i) => {
-        const description = tip.content.join(" ")
-        return (
-          <DisplayCollectionTile
-            key={tip._id}
-            id={tip._id}
-            title={tip.title}
-            content={description}
-            handleClick={handleClick}
-            img={tip.image}
-          />
-        )
-      })}
+      <div className={classes.galleryContainer}>
+        {arr.map((collection, i) => {
+          const description =
+            collection.description.join(" ").slice(0, 140) + "(...)"
+          return (
+            <DisplayCollectionTile
+              key={collection._id}
+              id={collection._id}
+              title={collection.title}
+              description={description}
+              handleClick={handleClick}
+              images={collection.images}
+            />
+          )
+        })}
+      </div>
     </Fragment>
   )
 }
