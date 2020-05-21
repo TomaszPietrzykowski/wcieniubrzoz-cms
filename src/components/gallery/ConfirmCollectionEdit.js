@@ -94,6 +94,7 @@ const ConfirmCollectionEdit = ({
   id,
   title,
   description,
+  isPublic,
   images,
   getGallery,
   setLoading,
@@ -119,6 +120,7 @@ const ConfirmCollectionEdit = ({
   const updated = {
     title: newTitle,
     description: newContent,
+    isPublic: isPublic,
     images: images,
   }
   const executePatch = async () => {
@@ -156,6 +158,7 @@ const ConfirmCollectionEdit = ({
         <div className={classes.flex1}>
           <div className={classes.preview}>
             <h3 style={{ color: "#555" }}>{title}</h3>
+            <h4>{isPublic ? "Publiczna" : "Prywatna"}</h4>
             <div className={classes.content}>
               {newContent.map((par) => (
                 <p>

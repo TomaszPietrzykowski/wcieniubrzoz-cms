@@ -3,12 +3,13 @@ import axios from "axios"
 import TextField from "@material-ui/core/TextField"
 import { makeStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
+import { AuthContext } from "../../context/AuthContext"
 
 import CollectionEditBtns from "./CollectionEditBtns"
 import FileUpload from "../FileUpload"
 import ImagesGrid from "./ImagesGrid"
+import PrivateSwitch from "./PrivateSwitch"
 import ConfirmCollectionEdit from "./ConfirmCollectionEdit"
-import { AuthContext } from "../../context/AuthContext"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,6 +47,11 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.tab,
     color: "#777",
     marginBottom: "0.5rem",
+  },
+  isPublic: {
+    ...theme.typography.tab,
+    color: "#777",
+    marginBottom: "1rem",
   },
   inputText: {
     fontSize: "3rem",
@@ -86,6 +92,7 @@ const EditCollection = ({
   const classes = useStyles()
   const { loggedInUser } = useContext(AuthContext)
   const [title, setTitle] = useState(collection.title)
+  const [isPublic, setIsPublic] = useState(false)
   const [description, setDescription] = useState(
     collection.description.join("\n\n")
   )
@@ -121,6 +128,11 @@ const EditCollection = ({
     setConfirm(true)
     window.scroll(0, 0)
   }
+
+  const updatePrivate = (bool) => {
+    setIsPublic(bool)
+  }
+
   const deleteCollection = async () => {
     setLoading(true)
     if (window.confirm(`Usunąć trwale: ${id} - ${title}?`)) {
@@ -156,6 +168,7 @@ const EditCollection = ({
       collection={collection}
       id={id}
       title={title}
+      isPublic={isPublic}
       description={description}
       images={images}
       getGallery={getGallery}
@@ -175,6 +188,9 @@ const EditCollection = ({
       </div>
       <div className={classes.flexContainer}>
         <div className={classes.flex1}>
+          <div className={classes.isPublic}>
+            <PrivateSwitch isPublic={isPublic} updatePrivate={updatePrivate} />
+          </div>
           <div className={classes.formContainer}>
             <form className={classes.root} noValidate autoComplete="off">
               <div>
@@ -188,6 +204,7 @@ const EditCollection = ({
                   onChange={updateTitle}
                 />
               </div>
+
               <div className={classes.alert} />
               <div>
                 <TextField
