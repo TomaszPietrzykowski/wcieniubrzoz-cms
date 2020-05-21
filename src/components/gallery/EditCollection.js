@@ -20,9 +20,11 @@ const useStyles = makeStyles((theme) => ({
   flexContainer: {
     display: "flex",
     marginTop: "5rem",
+    marginBottom: "5rem",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
       marginTop: "3rem",
+      marginBottom: "3rem",
     },
   },
   flex1: {

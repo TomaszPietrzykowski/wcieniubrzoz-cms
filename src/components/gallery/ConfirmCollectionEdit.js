@@ -21,9 +21,11 @@ const useStyles = makeStyles((theme) => ({
   flexContainer: {
     display: "flex",
     marginTop: "5rem",
+    marginBottom: "5rem",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
       marginTop: "3rem",
+      marginBottom: "3rem",
     },
   },
   flex1: {
@@ -164,7 +166,7 @@ const ConfirmCollectionEdit = ({
             </div>
           </div>
         </div>
-        <div className={classes.flex1}>
+        <div className={classes.flex2}>
           <div>
             <GridList cols={isMobile ? 2 : 3}>
               {images.map((img, i) => (
