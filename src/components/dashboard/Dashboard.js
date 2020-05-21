@@ -73,8 +73,8 @@ const Dashboard = () => {
           <DashboardTab
             img="slonecznik.jpg"
             title="Galeria"
-            description="Załaduj nowe zdjecia do galerii lub usuń istniejace. Organizuj podgalerie"
-            add="addtogallery"
+            description="Załaduj nowe zdjęcia do galerii lub usuń istniejące. Organizuj kolekcje"
+            add="addgallery"
             edit="gallery"
           />
         </Grid>

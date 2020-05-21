@@ -18,6 +18,7 @@ import AddTip from "./components/pages/AddTip"
 import Funfacts from "./components/pages/Funfacts"
 import AddFunfact from "./components/pages/AddFunfact"
 import Gallery from "./components/pages/Gallery"
+import AddGallery from "./components/pages/AddGallery"
 import NotFound from "./components/pages/NotFound"
 import Help from "./components/pages/Help"
 import Footer from "./components/ui/Footer"
@@ -53,6 +54,7 @@ function App() {
               <ProtectedRoute exact path="/funfacts" component={Funfacts} />
               <ProtectedRoute exact path="/addfunfact" component={AddFunfact} />
               <ProtectedRoute exact path="/gallery" component={Gallery} />
+              <ProtectedRoute exact path="/addgallery" component={AddGallery} />
               <ProtectedRoute exact path="/help" component={Help} />
               <Route
                 exact

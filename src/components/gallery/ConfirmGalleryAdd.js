@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useState, useContext } from "react"
 import Button from "@material-ui/core/Button"
 import { makeStyles } from "@material-ui/core/styles"
 import GridList from "@material-ui/core/GridList"
@@ -78,34 +78,22 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "0.8rem",
     },
   },
-  avatar: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-  },
 }))
 
-const ConfirmCollectionEdit = ({
+const ConfirmGalleryAdd = ({
   setConfirm,
-  setActiveTab,
-  setEditedCollection,
-  collection,
-  id,
   title,
   description,
   images,
-  getGallery,
   setLoading,
 }) => {
   const classes = useStyles()
   const { loggedInUser } = useContext(AuthContext)
-  const parsed = description.split("\n").filter((string) => string !== "")
-  const newContent = parsed.length > 0 ? parsed : collection.description
-  const newTitle = title || collection.title
+  const newContent = description.split("\n").filter((string) => string !== "")
+  const newTitle = title
+  const isMobile = useMediaQuery("(max-width:600px)")
   const [open, setOpen] = useState(false)
   const [currentImg, setCurrentImg] = useState("")
-  const isMobile = useMediaQuery("(max-width:600px)")
 
   const handleClose = () => {
     setOpen(false)
@@ -116,22 +104,25 @@ const ConfirmCollectionEdit = ({
     setOpen(true)
   }
 
-  const updated = {
-    title: newTitle,
-    description: newContent,
-    images: images,
-  }
-  const executePatch = async () => {
-    setLoading(true)
+  const executePost = async () => {
+    const updated = {
+      title: newTitle,
+      description: newContent,
+      images: images,
+    }
+
     try {
+      setLoading(true)
       const token = loggedInUser.token
       const config = { headers: { Authorization: `Bearer ${token}` } }
-      await axios.patch(
-        `https://gardens.barracudadev.com/api/v1/gallery/${id}`,
+
+      await axios.post(
+        `https://gardens.barracudadev.com/api/v1/gallery`,
         updated,
         config
       )
-      window.alert("Sukces: Kolekcja zaktualizowana :)")
+      setLoading(false)
+      window.alert("Sukces: kolekcja dodana :)")
     } catch (e) {
       if (e.response) {
         setLoading(false)
@@ -141,9 +132,6 @@ const ConfirmCollectionEdit = ({
         setLoading(false)
       }
     }
-    getGallery()
-    setActiveTab("list")
-    setEditedCollection({})
   }
   const goBack = () => {
     setConfirm(false)
@@ -151,7 +139,7 @@ const ConfirmCollectionEdit = ({
 
   return (
     <div>
-      <div className={classes.subtitle}>Potwierdź zmiany:</div>
+      <div className={classes.subtitle}>Nowa Kolekcja:</div>
       <div className={classes.flexContainer}>
         <div className={classes.flex1}>
           <div className={classes.preview}>
@@ -211,7 +199,7 @@ const ConfirmCollectionEdit = ({
           variant="contained"
           color="secondary"
           className={classes.btn}
-          onClick={executePatch}
+          onClick={executePost}
         >
           Wyślij
         </Button>
@@ -220,4 +208,4 @@ const ConfirmCollectionEdit = ({
   )
 }
 
-export default ConfirmCollectionEdit
+export default ConfirmGalleryAdd
