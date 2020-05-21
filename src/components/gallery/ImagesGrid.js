@@ -8,11 +8,11 @@ import ZoomIn from "@material-ui/icons/ZoomIn"
 import Dialog from "@material-ui/core/Dialog"
 import DialogActions from "@material-ui/core/DialogActions"
 import Button from "@material-ui/core/Button"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
 
 const useStyles = makeStyles((theme) => ({
   gridContainer: {
     width: "100%",
-    marginTop: "5rem",
   },
   dialogButtons: {
     display: "flex",
@@ -25,6 +25,7 @@ const ImagesGrid = ({ images, removeImage }) => {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
   const [currentImg, setCurrentImg] = useState("")
+  const isMobile = useMediaQuery("(max-width:600px)")
 
   const handleClose = () => {
     setOpen(false)
@@ -48,7 +49,7 @@ const ImagesGrid = ({ images, removeImage }) => {
 
   return (
     <div>
-      <GridList cols={3}>
+      <GridList cols={isMobile ? 2 : 3}>
         {images.map((img, i) => (
           <GridListTile key={i}>
             <img src={img} alt="" />

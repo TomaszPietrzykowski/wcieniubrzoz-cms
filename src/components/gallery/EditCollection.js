@@ -192,7 +192,7 @@ const EditCollection = ({
                   style={{ margin: "auto", marginBottom: "30px" }}
                   multiline
                   id="outlined-password-input"
-                  label="Treść"
+                  label="Opis kolekcji"
                   variant="outlined"
                   defaultValue={description}
                   onChange={updateDescription}
