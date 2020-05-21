@@ -75,7 +75,7 @@ const GalleryBtns = () => {
           color="secondary"
           className={classes.btn}
           component={Link}
-          to="/addtip"
+          to="/addgallery"
         >
           Dodaj
         </Button>

@@ -56,7 +56,6 @@ const FileUpload = ({ setImg }) => {
       setFile(e.target.files[0])
       setFilename(e.target.files[0].name)
       setChanged(true)
-      setImg(preview)
     } catch (err) {
       showError("Nie wybrano pliku")
       return
@@ -113,7 +112,7 @@ const FileUpload = ({ setImg }) => {
             color="primary"
             component="span"
           >
-            Zmień
+            Nowy
           </Button>
         </label>
         <label htmlFor="contained-button-file">
@@ -125,7 +124,7 @@ const FileUpload = ({ setImg }) => {
             component="span"
             onClick={onSubmit}
           >
-            Zapisz
+            Zobacz
           </Button>
         </label>
       </div>
