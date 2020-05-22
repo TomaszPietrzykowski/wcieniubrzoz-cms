@@ -52,7 +52,7 @@ const Help = () => {
         <h3>Jak działa CMS?</h3>
         <p>
           <strong>Statyczne i dynamiczne strony internetowe.</strong> Żeby
-          zrozumieć jak działa cms musimy znać różnicę pomiędzy statyczną i
+          zrozumieć jak działa CMS musimy znać różnicę pomiędzy statyczną i
           dynamiczną stroną internetową
         </p>
         <p>
@@ -81,11 +81,11 @@ const Help = () => {
         </p>
         <p>
           Dzięki temu możemy zmieniać treść, a po zapisaniu zmian w bazie
-          danych, oryginalna strona będzie zaczytywać od razu nową treść. Do
-          edycji treści w bazie danych służy właśnie CMS. Wprowadzając zmiany
-          zmieniasz odpowiednie wpisy w bazie danych. Ponieważ treść zaczytywana
-          jest przez oryginalną stronę od nowa przy każdych odwiedzinach, zmiany
-          wprowadzone z CMS’a są widoczne od razu
+          danych, oryginalna strona będzie zaczytywać nową treść w czasie
+          rzeczywistym. Do edycji treści w bazie danych służy właśnie CMS.
+          Wprowadzając zmiany zmieniasz odpowiednie wpisy w bazie danych.
+          Ponieważ treść zaczytywana jest przez oryginalną stronę od nowa przy
+          każdych odwiedzinach, zmiany wprowadzone z CMS’a są widoczne od razu.
         </p>
         <br />
         <br />
