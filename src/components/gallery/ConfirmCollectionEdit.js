@@ -158,10 +158,20 @@ const ConfirmCollectionEdit = ({
         <div className={classes.flex1}>
           <div className={classes.preview}>
             <h3 style={{ color: "#555" }}>{title}</h3>
-            <h4>{isPublic ? "Publiczna" : "Prywatna"}</h4>
+            <div data-keystring={id} className={classes.private}>
+              <span
+                style={{
+                  color: isPublic
+                    ? "rgba(0, 204, 0, 1)"
+                    : "rgba(162, 0, 26, 0.7)",
+                }}
+              >
+                <strong>{isPublic ? "Publiczna" : "Prywatna"}</strong>
+              </span>
+            </div>
             <div className={classes.content}>
-              {newContent.map((par) => (
-                <p>
+              {newContent.map((par, i) => (
+                <p key={i}>
                   {par}
                   <br />
                 </p>

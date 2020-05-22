@@ -92,7 +92,7 @@ const EditCollection = ({
   const classes = useStyles()
   const { loggedInUser } = useContext(AuthContext)
   const [title, setTitle] = useState(collection.title)
-  const [isPublic, setIsPublic] = useState(false)
+  const [isPublic, setIsPublic] = useState(collection.isPublic)
   const [description, setDescription] = useState(
     collection.description.join("\n\n")
   )

@@ -29,9 +29,6 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("xs")]: {
       height: "90px",
-      //   width: "2.5rem",
-      //   marginLeft: "0.3rem",
-      //   marginTop: "1.1rem",
     },
   },
   h2: {
@@ -41,6 +38,13 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       fontSize: "1rem",
     },
+  },
+  private: {
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    width: "100%",
+    marginBottom: "0.8rem",
   },
   p: {
     [theme.breakpoints.down("sm")]: {
@@ -54,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
 const DisplayCollectionTile = ({
   title,
+  isPublic,
   description,
   handleClick,
   id,
@@ -87,6 +92,24 @@ const DisplayCollectionTile = ({
           component="p"
           data-keystring={id}
         >
+          <span data-keystring={id} className={classes.private}>
+            <span
+              style={{
+                color: isPublic
+                  ? "rgba(0, 204, 0, 1)"
+                  : "rgba(162, 0, 26, 0.7)",
+              }}
+            >
+              <strong>{isPublic ? "Publiczna" : "Prywatna"}</strong>
+            </span>
+          </span>
+        </Typography>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          data-keystring={id}
+        >
           <span data-keystring={id} className={classes.p}>
             {description}
           </span>
@@ -94,6 +117,7 @@ const DisplayCollectionTile = ({
         <div className={classes.thumbnailsContainer} data-keystring={id}>
           {thumbnailIterArray.map((tn, i) => (
             <div
+              key={i}
               className={classes.thumbnail}
               data-keystring={id}
               style={{ backgroundImage: `url(${images[i]})` }}

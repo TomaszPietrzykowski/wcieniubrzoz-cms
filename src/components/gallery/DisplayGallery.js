@@ -49,6 +49,7 @@ const DisplayGallery = ({ gallery, setEditedCollection, setActiveTab }) => {
               key={collection._id}
               id={collection._id}
               title={collection.title}
+              isPublic={collection.isPublic}
               description={description}
               handleClick={handleClick}
               images={collection.images}

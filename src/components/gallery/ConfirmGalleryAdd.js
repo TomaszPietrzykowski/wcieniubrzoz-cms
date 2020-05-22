@@ -85,6 +85,7 @@ const ConfirmGalleryAdd = ({
   title,
   description,
   images,
+  isPublic,
   setLoading,
 }) => {
   const classes = useStyles()
@@ -108,6 +109,7 @@ const ConfirmGalleryAdd = ({
     const updated = {
       title: newTitle,
       description: newContent,
+      isPublic: isPublic,
       images: images,
     }
 
@@ -144,9 +146,20 @@ const ConfirmGalleryAdd = ({
         <div className={classes.flex1}>
           <div className={classes.preview}>
             <h3 style={{ color: "#555" }}>{title}</h3>
+            <div className={classes.private}>
+              <span
+                style={{
+                  color: isPublic
+                    ? "rgba(0, 204, 0, 1)"
+                    : "rgba(162, 0, 26, 0.7)",
+                }}
+              >
+                <strong>{isPublic ? "Publiczna" : "Prywatna"}</strong>
+              </span>
+            </div>
             <div className={classes.content}>
-              {newContent.map((par) => (
-                <p>
+              {newContent.map((par, i) => (
+                <p key={i}>
                   {par}
                   <br />
                 </p>

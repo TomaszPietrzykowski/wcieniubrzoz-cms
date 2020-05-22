@@ -111,8 +111,8 @@ const ConfirmTipAdd = ({
       <div className={classes.preview}>
         <h3 style={{ color: "#555" }}>{title}</h3>
         <div className={classes.content}>
-          {newContent.map((par) => (
-            <p>
+          {newContent.map((par, i) => (
+            <p key={i}>
               {par}
               <br />
             </p>

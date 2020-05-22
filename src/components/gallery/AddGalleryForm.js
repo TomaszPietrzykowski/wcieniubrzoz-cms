@@ -7,6 +7,7 @@ import GalleryAddBtns from "./GalleryAddBtns"
 import FileUpload from "../FileUpload"
 import ConfirmGalleryAdd from "./ConfirmGalleryAdd"
 import ImagesGrid from "./ImagesGrid"
+import PrivateSwitch from "./PrivateSwitch"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,6 +60,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "2rem",
     marginBottom: "2rem",
   },
+  isPublic: {
+    ...theme.typography.tab,
+    color: "#777",
+    marginBottom: "1rem",
+  },
   preview: {
     height: "180px",
     width: "180px",
@@ -80,6 +86,7 @@ const AddGalleryForm = ({ setLoading }) => {
   const [images, setImages] = useState([])
   const [confirm, setConfirm] = useState(false)
   const [title, setTitle] = useState("Nowa kolekcja")
+  const [isPublic, setIsPublic] = useState(false)
 
   const updateTitle = (e) => {
     setTitle(e.target.value)
@@ -110,11 +117,16 @@ const AddGalleryForm = ({ setLoading }) => {
     window.scroll(0, 0)
   }
 
+  const updatePrivate = (bool) => {
+    setIsPublic(bool)
+  }
+
   return confirm ? (
     <ConfirmGalleryAdd
       setLoading={setLoading}
       setConfirm={setConfirm}
       title={title}
+      isPublic={isPublic}
       description={description}
       images={images}
     />
@@ -125,6 +137,9 @@ const AddGalleryForm = ({ setLoading }) => {
       </div>
       <div className={classes.flexContainer}>
         <div className={classes.flex1}>
+          <div className={classes.isPublic}>
+            <PrivateSwitch isPublic={isPublic} updatePrivate={updatePrivate} />
+          </div>
           <div className={classes.formContainer}>
             <form className={classes.root} noValidate autoComplete="off">
               <div>
