@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AddGalleryForm = ({ setLoading }) => {
   const classes = useStyles()
-  const [description, setDescription] = useState([])
+  const [description, setDescription] = useState("")
   const [images, setImages] = useState([])
   const [confirm, setConfirm] = useState(false)
   const [title, setTitle] = useState("Nowa kolekcja")
