@@ -105,10 +105,7 @@ const AddGalleryForm = ({ setLoading }) => {
   }
 
   const addImage = (selected) => {
-    console.log(selected)
-    console.log(images)
     const arr = [...images, selected]
-    console.log(arr)
     setImages(arr)
   }
 

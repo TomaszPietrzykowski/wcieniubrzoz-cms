@@ -93,6 +93,7 @@ const EditCollection = ({
   const { loggedInUser } = useContext(AuthContext)
   const [title, setTitle] = useState(collection.title)
   const [isPublic, setIsPublic] = useState(collection.isPublic)
+  const [deleteMe, setDeleteMe] = useState([])
   const [description, setDescription] = useState(
     collection.description.join("\n\n")
   )
@@ -108,12 +109,13 @@ const EditCollection = ({
     setDescription(e.target.value)
   }
 
-  const removeImage = (selected) => {
-    console.log("remove image called", selected)
+  const removeImage = async (selected) => {
     let arr = [...images]
-    console.log(arr)
+    let deleteArr = [...deleteMe]
     const newArr = arr.filter((img) => img !== selected)
     setImages(newArr)
+    deleteArr.push(selected)
+    setDeleteMe(deleteArr)
   }
 
   const addImage = (selected) => {
@@ -133,6 +135,18 @@ const EditCollection = ({
     setIsPublic(bool)
   }
 
+  const deleteFromFTP = async (filePath) => {
+    const token = loggedInUser.token
+    const config = { headers: { Authorization: `Bearer ${token}` } }
+    const fileName = filePath.split("/")[filePath.split("/").length - 1]
+    const bodyObj = { file: fileName }
+    await axios.post(
+      `https://gardens.barracudadev.com/api/v1/delete`,
+      bodyObj,
+      config
+    )
+  }
+
   const deleteCollection = async () => {
     setLoading(true)
     if (window.confirm(`Usunąć trwale: ${id} - ${title}?`)) {
@@ -143,6 +157,9 @@ const EditCollection = ({
           `https://gardens.barracudadev.com/api/v1/gallery/${id}`,
           config
         )
+        images.forEach((string) => {
+          deleteFromFTP(string)
+        })
         setLoading(false)
         window.alert(`Galeria usunięta`)
       } catch (e) {
@@ -181,6 +198,7 @@ const EditCollection = ({
           title={title}
           id={id}
           deleteCollection={deleteCollection}
+          deleteFromFTP={deleteFromFTP}
           setEditedCollection={setEditedCollection}
           setActiveTab={setActiveTab}
           setConfirm={setConfirm}

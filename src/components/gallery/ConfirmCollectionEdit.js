@@ -98,6 +98,8 @@ const ConfirmCollectionEdit = ({
   images,
   getGallery,
   setLoading,
+  deleteMe,
+  deleteFromFTP,
 }) => {
   const classes = useStyles()
   const { loggedInUser } = useContext(AuthContext)
@@ -133,6 +135,12 @@ const ConfirmCollectionEdit = ({
         updated,
         config
       )
+
+      if (deleteMe && deleteMe.length > 0) {
+        deleteMe.forEach((string) => {
+          deleteFromFTP(string)
+        })
+      }
       window.alert("Sukces: Kolekcja zaktualizowana :)")
     } catch (e) {
       if (e.response) {
