@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 import axios from "axios"
 
-import preview from "../assets/preview.png"
 import Message from "./Message"
 import { AuthContext } from "../context/AuthContext"
 
@@ -30,8 +29,6 @@ const FileUpload = ({ setImg }) => {
   const { loggedInUser } = useContext(AuthContext)
   const classes = useStyles()
   const [file, setFile] = useState("")
-  const [filename, setFilename] = useState("")
-  const [uploadedFile, setUploadedFile] = useState({})
   const [changed, setChanged] = useState(false)
   const [msg, setMsg] = useState("")
   const [msgColor, setMsgColor] = useState("rgb(0,200,0)")
@@ -54,7 +51,6 @@ const FileUpload = ({ setImg }) => {
   const onChange = (e) => {
     try {
       setFile(e.target.files[0])
-      setFilename(e.target.files[0].name)
       setChanged(true)
     } catch (err) {
       showError("Nie wybrano pliku")
@@ -77,9 +73,8 @@ const FileUpload = ({ setImg }) => {
           },
         }
       )
-      const { fileName, filePath } = res.data
+      const { fileName } = res.data
 
-      setUploadedFile({ fileName, filePath })
       setImg(`https://gardens.barracudadev.com/uploads/${fileName}`)
       showSuccess(`Zapisano: ${fileName}`)
       setChanged(false)

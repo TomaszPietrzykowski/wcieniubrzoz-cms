@@ -97,9 +97,7 @@ const AddGalleryForm = ({ setLoading }) => {
   }
 
   const removeImage = (selected) => {
-    console.log("remove image called", selected)
     let arr = [...images]
-    console.log(arr)
     const newArr = arr.filter((img) => img !== selected)
     setImages(newArr)
   }
