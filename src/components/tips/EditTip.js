@@ -76,6 +76,19 @@ const EditTip = ({ tip, setActiveTab, setEditedTip, getTips, setLoading }) => {
     setConfirm(true)
     window.scroll(0, 0)
   }
+
+  const deleteFromFTP = async (filePath) => {
+    const token = loggedInUser.token
+    const config = { headers: { Authorization: `Bearer ${token}` } }
+    const fileName = filePath.split("/")[filePath.split("/").length - 1]
+    const bodyObj = { file: fileName }
+    await axios.post(
+      `https://gardens.barracudadev.com/api/v1/delete`,
+      bodyObj,
+      config
+    )
+  }
+
   const deleteTip = async () => {
     setLoading(true)
     if (window.confirm(`Usunąć trwale: ${id} - ${title}?`)) {
@@ -86,6 +99,7 @@ const EditTip = ({ tip, setActiveTab, setEditedTip, getTips, setLoading }) => {
           `https://gardens.barracudadev.com/api/v1/tips/${id}`,
           config
         )
+        deleteFromFTP(img)
         setLoading(false)
         window.alert(`Porada usunięta`)
       } catch (e) {

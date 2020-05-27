@@ -82,6 +82,19 @@ const EditLegend = ({
     setConfirm(true)
     window.scroll(0, 0)
   }
+
+  const deleteFromFTP = async (filePath) => {
+    const token = loggedInUser.token
+    const config = { headers: { Authorization: `Bearer ${token}` } }
+    const fileName = filePath.split("/")[filePath.split("/").length - 1]
+    const bodyObj = { file: fileName }
+    await axios.post(
+      `https://gardens.barracudadev.com/api/v1/delete`,
+      bodyObj,
+      config
+    )
+  }
+
   const deleteLegend = async () => {
     setLoading(true)
     if (window.confirm(`Usunąć trwale: ${id} - ${title}?`)) {
@@ -92,6 +105,7 @@ const EditLegend = ({
           `https://gardens.barracudadev.com/api/v1/legends/${id}`,
           config
         )
+        deleteFromFTP(img)
         setLoading(false)
         window.alert(`Legenda usunięta`)
       } catch (e) {
