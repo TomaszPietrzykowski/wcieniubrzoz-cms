@@ -111,18 +111,15 @@ const EditCollection = ({
 
   const removeImage = async (selected) => {
     let arr = [...images]
-    let deleteArr = [...deleteMe]
+
     const newArr = arr.filter((img) => img !== selected)
     setImages(newArr)
-    deleteArr.push(selected)
+    let deleteArr = [...deleteMe, selected]
     setDeleteMe(deleteArr)
   }
 
   const addImage = (selected) => {
-    console.log(selected)
-    console.log(images)
     const arr = [...images, selected]
-    console.log(arr)
     setImages(arr)
   }
 
@@ -149,7 +146,7 @@ const EditCollection = ({
 
   const deleteCollection = async () => {
     setLoading(true)
-    if (window.confirm(`Usunąć trwale: ${id} - ${title}?`)) {
+    if (window.confirm(`Usunąć trwale kolekcję: ${title}?`)) {
       try {
         const token = loggedInUser.token
         const config = { headers: { Authorization: `Bearer ${token}` } }
@@ -190,6 +187,8 @@ const EditCollection = ({
       images={images}
       getGallery={getGallery}
       setLoading={setLoading}
+      deleteMe={deleteMe}
+      deleteFromFTP={deleteFromFTP}
     />
   ) : (
     <div>

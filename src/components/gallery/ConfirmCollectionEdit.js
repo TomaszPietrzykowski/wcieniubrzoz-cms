@@ -136,7 +136,7 @@ const ConfirmCollectionEdit = ({
         config
       )
 
-      if (deleteMe && deleteMe.length > 0) {
+      if (deleteMe.length > 0) {
         deleteMe.forEach((string) => {
           deleteFromFTP(string)
         })

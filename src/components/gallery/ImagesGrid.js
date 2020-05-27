@@ -67,7 +67,7 @@ const ImagesGrid = ({ images, removeImage }) => {
           </GridListTile>
         ))}
       </GridList>
-      <Dialog modal={"false"} open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={handleClose}>
         <img src={currentImg} alt="" style={{ width: "100%" }} />
         <DialogActions className={classes.dialogButtons}>
           <Button onClick={() => handleDelete(currentImg)}>
