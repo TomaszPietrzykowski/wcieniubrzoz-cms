@@ -21,6 +21,7 @@ import Gallery from "./components/pages/Gallery"
 import AddGallery from "./components/pages/AddGallery"
 import NotFound from "./components/pages/NotFound"
 import Help from "./components/pages/Help"
+import Admin from "./components/pages/Admin"
 import Footer from "./components/ui/Footer"
 import ScrollToTop from "./components/ScrollToTop"
 import FloatButton from "./components/FloatButton"
@@ -56,6 +57,7 @@ function App() {
               <ProtectedRoute exact path="/gallery" component={Gallery} />
               <ProtectedRoute exact path="/addgallery" component={AddGallery} />
               <ProtectedRoute exact path="/help" component={Help} />
+              <ProtectedRoute exact path="/admin" component={Admin} />
               <Route
                 exact
                 path="/login"
