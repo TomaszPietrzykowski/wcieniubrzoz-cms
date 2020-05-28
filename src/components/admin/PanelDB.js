@@ -21,7 +21,12 @@ const useStyles = makeStyles({
   },
 })
 
-const PanelFTP = ({ filesCount, totalSize }) => {
+const PanelDB = ({
+  legendsCount,
+  tipsCount,
+  funfactsCount,
+  galleriesCount,
+}) => {
   const classes = useStyles()
 
   function createData(name, value) {
@@ -29,17 +34,23 @@ const PanelFTP = ({ filesCount, totalSize }) => {
   }
 
   const rows = [
-    createData("Ilość zdjęć na serwerze:", filesCount),
-    createData("Zajęta przestrzeń:", totalSize),
+    createData(
+      "Wszystkie dokumenty w bazie:",
+      legendsCount + tipsCount + funfactsCount + galleriesCount
+    ),
+    createData("Legendy:", legendsCount),
+    createData("Porady:", tipsCount),
+    createData("Ciekawostki:", funfactsCount),
+    createData("Galerie:", galleriesCount),
   ]
 
   return (
     <div>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className={classes.tableContainer}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell className={classes.tableHeader}>Serwer FTP</TableCell>
+              <TableCell className={classes.tableHeader}>Baza danych</TableCell>
               <TableCell align="right"></TableCell>
             </TableRow>
           </TableHead>
@@ -59,4 +70,4 @@ const PanelFTP = ({ filesCount, totalSize }) => {
   )
 }
 
-export default PanelFTP
+export default PanelDB
