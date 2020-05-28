@@ -10,14 +10,24 @@ import Paper from "@material-ui/core/Paper"
 
 const useStyles = makeStyles({
   tableContainer: {
-    marginTop: "3rem",
+    marginTop: "4rem",
   },
   table: {
     width: "100%",
   },
   tableHeader: {
+    backgroundColor: "rgba(83, 198, 140, 1)",
+    fontFamily: "Raleway",
     fontSize: "1.3rem",
-    color: "#777",
+    fontWeight: "700",
+    letterSpacing: 1,
+    color: "#fff",
+  },
+  tableSubheader: {
+    backgroundColor: "rgba(83, 198, 140, 0.05)",
+    fontSize: "1rem",
+    fontWeight: "700",
+    color: "rgba(83, 198, 140, 1)",
   },
 })
 
@@ -34,10 +44,6 @@ const PanelDB = ({
   }
 
   const rows = [
-    createData(
-      "Wszystkie dokumenty w bazie:",
-      legendsCount + tipsCount + funfactsCount + galleriesCount
-    ),
     createData("Legendy:", legendsCount),
     createData("Porady:", tipsCount),
     createData("Ciekawostki:", funfactsCount),
@@ -51,7 +57,10 @@ const PanelDB = ({
           <TableHead>
             <TableRow>
               <TableCell className={classes.tableHeader}>Baza danych</TableCell>
-              <TableCell align="right"></TableCell>
+              <TableCell
+                align="right"
+                className={classes.tableHeader}
+              ></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -63,6 +72,18 @@ const PanelDB = ({
                 <TableCell align="right">{row.value}</TableCell>
               </TableRow>
             ))}
+            <TableRow key="Wszystkie dokumenty w bazie:">
+              <TableCell
+                component="th"
+                scope="row"
+                className={classes.tableSubheader}
+              >
+                Wszystkie dokumenty w bazie:
+              </TableCell>
+              <TableCell align="right" className={classes.tableSubheader}>
+                {legendsCount + tipsCount + funfactsCount + galleriesCount}
+              </TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </TableContainer>

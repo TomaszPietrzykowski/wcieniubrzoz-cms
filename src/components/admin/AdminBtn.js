@@ -1,5 +1,5 @@
 import React from "react"
-import StorageIcon from "@material-ui/icons/Storage"
+import SpeedIcon from "@material-ui/icons/Speed"
 import { Link } from "react-router-dom"
 import { makeStyles } from "@material-ui/styles"
 import IconButton from "@material-ui/core/IconButton"
@@ -25,7 +25,7 @@ const AdminBtn = () => {
   return (
     <div className={classes.btnContainer}>
       <IconButton color="primary" component={Link} to="/admin">
-        <StorageIcon className={classes.icon} />
+        <SpeedIcon className={classes.icon} />
       </IconButton>
     </div>
   )

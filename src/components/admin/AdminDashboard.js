@@ -5,6 +5,8 @@ import axios from "axios"
 import PanelFTP from "./PanelFTP"
 import PanelDB from "./PanelDB"
 import Loader from "../ui/Loader"
+import PanelNoRef from "./PanelNoRef"
+import HomeBtn from "../ui/HomeBtn"
 
 const AdminDashboard = () => {
   const [loadingFTP, setLoadingFTP] = useState(true)
@@ -15,6 +17,7 @@ const AdminDashboard = () => {
   const [tipsCount, setTipsCount] = useState(0)
   const [funfactsCount, setFunfactsCount] = useState(0)
   const [galleriesCount, setGalleriesCount] = useState(0)
+  const [ftpTotal, setFtpTotal] = useState([])
 
   const { loggedInUser } = useContext(AuthContext)
 
@@ -36,18 +39,19 @@ const AdminDashboard = () => {
 
       const originalSize = await response.data.ftpSize
       const originalCount = await response.data.results
-      console.log(originalSize, originalCount)
+      const imagesArray = await response.data.data
       let size =
         originalSize > 1048576
           ? originalSize / 1048576
           : originalSize > 1024
           ? originalSize / 1024
           : originalSize
-      console.log(size)
+
       let unit =
         originalSize > 1048576 ? "MB" : originalSize > 1024 ? "KB" : "bytes"
       setFilesCount(originalCount)
       setTotalSize(`${parseFloat(size).toFixed(2)} ${unit}`)
+      setFtpTotal(imagesArray)
       setLoadingFTP(false)
     } catch (e) {
       if (e.response) {
@@ -116,6 +120,8 @@ const AdminDashboard = () => {
         funfactsCount={funfactsCount}
         galleriesCount={galleriesCount}
       />
+      <PanelNoRef ftpTotal={ftpTotal} />
+      <HomeBtn />
     </div>
   )
 }
