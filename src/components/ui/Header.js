@@ -58,17 +58,16 @@ const useStyles = makeStyles((theme) => ({
   logotext: {
     ...theme.typography.logotext,
     color: "white",
-    fontFamily: "Roboto",
+    fontFamily: "Raleway",
     fontSize: "2.5rem",
     fontWeight: 700,
-    letterSpacing: 6,
+    letterSpacing: 2,
     [theme.breakpoints.down("sm")]: {
       fontSize: "2rem",
-      letterSpacing: 4,
+      letterSpacing: 1,
     },
     [theme.breakpoints.down("xs")]: {
       fontSize: "1.8rem",
-      letterSpacing: 2,
     },
   },
   logoContainer: {

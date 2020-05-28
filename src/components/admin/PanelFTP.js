@@ -8,28 +8,42 @@ import TableHead from "@material-ui/core/TableHead"
 import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   tableContainer: {
-    marginTop: "4rem",
+    marginTop: "6rem",
   },
   table: {
     width: "100%",
   },
   tableHeader: {
-    backgroundColor: "rgba(0, 163, 204, 1)",
+    backgroundColor: "rgba(0, 163, 204, 0.7)",
     fontFamily: "Raleway",
     fontSize: "1.3rem",
     fontWeight: "700",
-    letterSpacing: 1,
+    letterSpacing: 2,
     color: "#fff",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.2rem",
+      letterSpacing: 1,
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.1rem",
+    },
   },
   tableSubheader: {
-    backgroundColor: "rgba(0, 163, 204, 0.05)",
+    backgroundColor: "rgba(0, 163, 204, 0.06)",
     fontSize: "1rem",
     fontWeight: "700",
     color: "rgba(0, 163, 204, 1)",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.9rem",
+      fontWeight: "500",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.85rem",
+    },
   },
-})
+}))
 
 const PanelFTP = ({ filesCount, totalSize }) => {
   const classes = useStyles()

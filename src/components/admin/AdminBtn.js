@@ -10,12 +10,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
   },
   icon: {
-    fontSize: "2.5rem",
+    fontSize: "3rem",
     [theme.breakpoints.down("sm")]: {
-      fontSize: "2rem",
+      fontSize: "2.5rem",
     },
     [theme.breakpoints.down("xs")]: {
-      fontSize: "1.2rem",
+      fontSize: "2rem",
     },
   },
 }))

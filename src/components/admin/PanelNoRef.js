@@ -15,36 +15,50 @@ import axios from "axios"
 
 import spinner from "../../assets/spinner.svg"
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   tableContainer: {
     marginTop: "4rem",
-    marginBottom: "6rem",
+    marginBottom: "4rem",
   },
   table: {
     width: "100%",
   },
   tableHeader: {
-    backgroundColor: "rgba(77, 0, 77, 0.5)",
+    backgroundColor: "rgba(102, 102, 153, 0.55)",
     fontFamily: "Raleway",
     fontSize: "1.3rem",
     fontWeight: "700",
-    letterSpacing: 1,
+    letterSpacing: 2,
     color: "#fff",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.2rem",
+      letterSpacing: 1,
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.1rem",
+    },
   },
   tableSubheader: {
-    backgroundColor: "rgba(77, 0, 77, 0.05)",
+    backgroundColor: "rgba(102, 102, 153, 0.06)",
     fontSize: "1rem",
     fontWeight: "700",
-    color: "rgba(77, 0, 77, 1)",
+    color: "rgba(102, 102, 153, 1)",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.9rem",
+      fontWeight: "500",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.85rem",
+    },
   },
   iconDelete: {
     color: "rgb(153, 0, 0)",
     fontSize: "1.2rem",
   },
   analizing: {
-    color: "rgba(77, 0, 77, 0.7)",
+    color: "rgba(102, 102, 153, 0.7)",
   },
-})
+}))
 
 const PanelNoRef = ({ ftpTotal }) => {
   const classes = useStyles()
