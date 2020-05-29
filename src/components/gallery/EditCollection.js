@@ -43,6 +43,19 @@ const useStyles = makeStyles((theme) => ({
       margin: 0,
     },
   },
+  imgCount: {
+    fontSize: "1rem",
+    color: "#777",
+    fontFamily: "Roboto",
+    textAlign: "left",
+    marginBottom: "1.5rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.9rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.8rem",
+    },
+  },
   text: {
     ...theme.typography.tab,
     color: "#777",
@@ -205,9 +218,13 @@ const EditCollection = ({
       </div>
       <div className={classes.flexContainer}>
         <div className={classes.flex1}>
+          <div className={classes.imgCount}>
+            Zdjęć w kolekcji: {images.length}
+          </div>
           <div className={classes.isPublic}>
             <PrivateSwitch isPublic={isPublic} updatePrivate={updatePrivate} />
           </div>
+
           <div className={classes.formContainer}>
             <form className={classes.root} noValidate autoComplete="off">
               <div>
