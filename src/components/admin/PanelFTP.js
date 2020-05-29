@@ -10,7 +10,7 @@ import Paper from "@material-ui/core/Paper"
 
 const useStyles = makeStyles((theme) => ({
   tableContainer: {
-    marginTop: "6rem",
+    marginTop: "1rem",
   },
   table: {
     width: "100%",

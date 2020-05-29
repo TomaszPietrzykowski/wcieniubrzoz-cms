@@ -7,6 +7,7 @@ import PanelDB from "./PanelDB"
 import Loader from "../ui/Loader"
 import PanelNoRef from "./PanelNoRef"
 import HomeBtn from "../ui/HomeBtn"
+import RefreshDataBtn from "./RefreshDataBtn"
 
 const AdminDashboard = () => {
   const [loadingFTP, setLoadingFTP] = useState(true)
@@ -18,14 +19,14 @@ const AdminDashboard = () => {
   const [funfactsCount, setFunfactsCount] = useState(0)
   const [galleriesCount, setGalleriesCount] = useState(0)
   const [ftpTotal, setFtpTotal] = useState([])
+  const [reload, setReload] = useState(true)
 
   const { loggedInUser } = useContext(AuthContext)
 
   useEffect(() => {
     getFTP()
     getDB()
-    // eslint-disable-next-line
-  }, [])
+  }, [reload])
 
   const getFTP = async () => {
     setLoadingFTP(true)
@@ -113,6 +114,7 @@ const AdminDashboard = () => {
     <Loader />
   ) : (
     <div>
+      <RefreshDataBtn reload={reload} setReload={setReload} />
       <PanelFTP filesCount={filesCount} totalSize={totalSize} />
       <PanelDB
         legendsCount={legendsCount}
