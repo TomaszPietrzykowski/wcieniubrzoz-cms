@@ -64,7 +64,6 @@ const PanelNoRef = ({ ftpTotal }) => {
   const classes = useStyles()
   const { loggedInUser } = useContext(AuthContext)
   const [noRefArray, setNoRefArray] = useState([])
-  const [noRefCount, setNoRefCount] = useState(0)
   const [scanning, setScanning] = useState(false)
 
   const getRedundant = async () => {
@@ -84,7 +83,6 @@ const PanelNoRef = ({ ftpTotal }) => {
       const redundantFiltered = redundant.filter(
         (el) => el.split(".").length > 1
       )
-      setNoRefCount(redundantFiltered.length)
       setNoRefArray(redundantFiltered)
       setScanning(false)
     } catch (e) {
@@ -98,9 +96,25 @@ const PanelNoRef = ({ ftpTotal }) => {
     }
   }
 
+  const deleteFromFTP = async (filePath) => {
+    const token = loggedInUser.token
+    const config = { headers: { Authorization: `Bearer ${token}` } }
+    const fileName = filePath.split("/")[filePath.split("/").length - 1]
+    const bodyObj = { file: fileName }
+    await axios.post(
+      `https://gardens.barracudadev.com/api/v1/delete`,
+      bodyObj,
+      config
+    )
+  }
+
   const handleDelete = (e) => {
     const id = e.target.id || e.target.parentElement.id
-    window.alert(`Handle delete: ${id}`)
+    if (window.confirm(`Usunąć: ${id} ?`)) {
+      const newRedundant = [...noRefArray].filter((el) => el !== id)
+      deleteFromFTP(`https://gardens.barracudadev.com/uploads/${id}`)
+      setNoRefArray(newRedundant)
+    }
   }
 
   function createData(name, value) {
@@ -159,7 +173,7 @@ const PanelNoRef = ({ ftpTotal }) => {
                   Pliki bez powiązań w bazie danych:
                 </TableCell>
                 <TableCell align="right" className={classes.tableSubheader}>
-                  {noRefCount}
+                  {noRefArray.length}
                 </TableCell>
               </TableRow>
             ) : null}
