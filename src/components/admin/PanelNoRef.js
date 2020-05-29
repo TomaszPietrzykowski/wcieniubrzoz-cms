@@ -65,9 +65,11 @@ const PanelNoRef = ({ ftpTotal }) => {
   const { loggedInUser } = useContext(AuthContext)
   const [noRefArray, setNoRefArray] = useState([])
   const [scanning, setScanning] = useState(false)
+  const [wasScanned, setWasScanned] = useState(false)
 
   const getRedundant = async () => {
     setScanning(true)
+    setWasScanned(false)
     setNoRefArray([])
     try {
       const token = loggedInUser.token
@@ -84,6 +86,7 @@ const PanelNoRef = ({ ftpTotal }) => {
         (el) => el.split(".").length > 1
       )
       setNoRefArray(redundantFiltered)
+      setWasScanned(true)
       setScanning(false)
     } catch (e) {
       if (e.response) {
@@ -167,7 +170,7 @@ const PanelNoRef = ({ ftpTotal }) => {
                 </TableCell>
                 <TableCell align="right"></TableCell>
               </TableRow>
-            ) : noRefArray.length > 0 ? (
+            ) : wasScanned ? (
               <TableRow>
                 <TableCell className={classes.tableSubheader}>
                   Pliki bez powiązań w bazie danych:
