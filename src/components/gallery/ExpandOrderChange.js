@@ -33,6 +33,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "2.5rem",
     color: "#777",
   },
+  orderBtncontainer: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "flex-end",
+  },
 }))
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -121,9 +126,11 @@ export default function FullScreenDialog({ getGallery, gallery, setLoading }) {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Zmień kolejność kolekcji
-      </Button>
+      <div className={classes.orderBtncontainer}>
+        <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+          Zmień kolejność kolekcji
+        </Button>
+      </div>
       <Dialog
         fullScreen
         open={open}
