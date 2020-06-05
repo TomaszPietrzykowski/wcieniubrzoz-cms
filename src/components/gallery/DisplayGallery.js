@@ -34,7 +34,7 @@ const DisplayGallery = ({ gallery, setEditedCollection, setActiveTab }) => {
   }
 
   const arr = gallery.sort((a, b) =>
-    a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+    a.order > b.order ? 1 : b.order > a.order ? -1 : 0
   )
 
   return (
