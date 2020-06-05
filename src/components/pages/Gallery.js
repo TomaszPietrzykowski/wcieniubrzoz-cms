@@ -4,6 +4,7 @@ import SectionHeader from "../ui/SectionHeader"
 import HelpBtn from "../ui/HelpBtn"
 import DisplayGallery from "../gallery/DisplayGallery"
 import EditCollection from "../gallery/EditCollection"
+import ChangeGalleryOrder from "../gallery/ChangeGalleryOrder"
 import Loader from "../ui/Loader"
 
 const Gallery = () => {
@@ -39,6 +40,11 @@ const Gallery = () => {
 
   return (
     <div>
+      <ChangeGalleryOrder
+        gallery={gallery}
+        setLoading={setLoading}
+        getGallery={getGallery}
+      />
       <SectionHeader
         title={activeTab === "edit" ? "Edytuj kolekcję" : "Galeria"}
       />
