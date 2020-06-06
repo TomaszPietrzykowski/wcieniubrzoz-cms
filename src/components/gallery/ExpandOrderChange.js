@@ -29,10 +29,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.5rem",
     fontWeight: "700",
     [theme.breakpoints.down("sm")]: {
-      fontSize: "1.3rem",
+      fontSize: "1.4rem",
     },
     [theme.breakpoints.down("xs")]: {
-      fontSize: "1rem",
+      fontSize: "1.1rem",
     },
   },
   ico: {
@@ -178,7 +178,7 @@ export default function FullScreenDialog({ getGallery, gallery, setLoading }) {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Zmień kolejność kolekcji
+              Zmień kolejność
             </Typography>
             <Button autoFocus color="inherit" onClick={handleChange}>
               zapisz
