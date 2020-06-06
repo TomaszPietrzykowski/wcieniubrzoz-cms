@@ -7,7 +7,7 @@ import LoginForm from "../LoginForm"
 const Login = () => {
   const [loading, setLoading] = useState(false)
   return (
-    <div>
+    <div style={{ marginBottom: "20vh" }}>
       <SectionHeader title="Zaloguj się" />
       {loading ? <Loader /> : <LoginForm setLoading={setLoading} />}
     </div>

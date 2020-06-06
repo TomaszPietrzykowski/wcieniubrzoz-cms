@@ -11,6 +11,7 @@ const Loader = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        marginBottom: "35vh",
       }}
     >
       <img
