@@ -28,15 +28,39 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Raleway",
     fontSize: "1.5rem",
     fontWeight: "700",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.3rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+    },
   },
   ico: {
     fontSize: "2.5rem",
     color: "#777",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "2rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.8rem",
+    },
+  },
+  text: {
+    color: "#777",
   },
   orderBtncontainer: {
+    marginTop: "2rem",
     display: "flex",
     width: "100%",
     justifyContent: "flex-end",
+    [theme.breakpoints.down("xs")]: {
+      justifyContent: "center",
+    },
+  },
+  orderBtn: {
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.8rem",
+    },
   },
 }))
 
@@ -127,7 +151,12 @@ export default function FullScreenDialog({ getGallery, gallery, setLoading }) {
   return (
     <div>
       <div className={classes.orderBtncontainer}>
-        <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={handleClickOpen}
+          className={classes.orderBtn}
+        >
           Zmień kolejność kolekcji
         </Button>
       </div>
@@ -149,7 +178,7 @@ export default function FullScreenDialog({ getGallery, gallery, setLoading }) {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Edytuj kolejność kolekcji
+              Zmień kolejność kolekcji
             </Typography>
             <Button autoFocus color="inherit" onClick={handleChange}>
               zapisz
@@ -160,7 +189,7 @@ export default function FullScreenDialog({ getGallery, gallery, setLoading }) {
           {ordered.map((col, i) => (
             <div key={col._id}>
               <ListItem>
-                <ListItemText primary={col.title} />
+                <ListItemText primary={col.title} className={classes.text} />
                 <IconButton
                   edge="end"
                   color="inherit"
