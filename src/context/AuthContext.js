@@ -12,6 +12,7 @@ class AuthContexProvider extends Component {
   }
   logOut = () => {
     this.setState({ isLoggedIn: false, loggedInUser: {} })
+    localStorage.removeItem("currentUser")
   }
   setUser = (user) => {
     this.setState({ loggedInUser: user })
