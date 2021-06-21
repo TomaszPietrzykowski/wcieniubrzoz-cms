@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import { ThemeProvider } from "@material-ui/core/styles"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 
@@ -37,8 +37,16 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function App() {
-  const { isLoggedIn, loggedInUser } = useContext(AuthContext)
+  const { isLoggedIn, loggedInUser, logIn, setUser } = useContext(AuthContext)
   const classes = useStyles()
+
+  useEffect(() => {
+    const user = localStorage.getItem("currentUser")
+    if (user) {
+      setUser(JSON.parse(user))
+      logIn()
+    }
+  }, [setUser, logIn])
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>

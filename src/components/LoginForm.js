@@ -65,6 +65,8 @@ const LoginForm = ({ setLoading }) => {
       const userData = response.data.data
       const token = response.data.token
       const activeUser = { ...userData, token: token }
+      console.log(activeUser)
+      localStorage.setItem("currentUser", JSON.stringify(activeUser))
       setUser(activeUser)
       logIn()
     } catch (e) {
