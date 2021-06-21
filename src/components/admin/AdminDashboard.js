@@ -26,6 +26,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     getFTP()
     getDB()
+    // eslint-disable-next-line
   }, [reload])
 
   const getFTP = async () => {

@@ -72,6 +72,7 @@ const LoginForm = ({ setLoading }) => {
         setLoading(false)
         window.alert(e.response.data.message)
       } else {
+        console.log(e)
         window.alert("Autentykacja nieudana")
         setLoading(false)
       }

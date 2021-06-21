@@ -16,10 +16,6 @@ const Gallery = () => {
   const [activeTab, setActiveTab] = useState("list")
   const { loggedInUser } = useContext(AuthContext)
 
-  useEffect(() => {
-    getGallery()
-  }, [])
-
   const getGallery = async () => {
     window.scroll(0, 0)
     setLoading(true)
@@ -44,6 +40,11 @@ const Gallery = () => {
       }
     }
   }
+
+  useEffect(() => {
+    getGallery()
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <div>
